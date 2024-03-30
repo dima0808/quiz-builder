@@ -171,6 +171,7 @@ svg * {
   --color-purple-light: #f5f9ff;
   --color-accent: #B9FF66;
   --color-gray: #F3F3F3;
+  --color-login: #fff;
   --color-gray-alt: #898989;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
@@ -272,7 +273,7 @@ h4, .h4 {
 }
 
 .header {
-  padding-top: 60px;
+  padding-top: 30px;
 }
 .header__inner {
   display: flex;
@@ -496,4 +497,30 @@ h4, .h4 {
 .info__diagram-descroption p {
   text-align: center;
   color: var(--color-gray-alt);
+}
+
+.form-container {
+  width: 500px;
+  margin: 100px auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn-submit {
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
+}
+
+.valid {
+  border: 2px solid green;
+}
+
+.invalid {
+  border: 2px solid red;
 }/*# sourceMappingURL=styles.css.map */

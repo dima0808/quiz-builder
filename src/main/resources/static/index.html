@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Kpi test online</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__inner container">
+            <a href="/" class="header__logo logo nowrap">Kpi <span class="color-blue">Test</span>online</a>
+            <nav class="header__menu hidden-desktop">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a href="" class="header__menu-link">Головна</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="" class="header__menu-link">Тести</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="" class="header__menu-link">Інформація</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="" class="header__menu-link">Зв'язок</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header__link hidden-desktop">
+                <a href="/login" class="header__link-login">Вхід</a>
+                <a href="./register-form.html" class="header__link-register">Реєстрація</a>
+            </div>
+            <button 
+                class="header__burger-button burger-button visible-desktop"
+                type="button"
+                onclick="mobileOverlay.showModal()">
+                <span class="visually-hidden">Open navigation menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="section container">
+            <div class="section__body">
+                <div class="info">
+                    <div class="info__main">
+                        <div class="info__body">
+                            <h1 class="info__title">Конструктор опитувань, квізів і тестів для школярів та студентів</h1>
+                            <div class="info__description">
+                                <p>Допомагаємо створювати тести різної складності. З нашою допомогою ви зможете легко створити тести та інші типи опитувань швидко і легко.</p>
+                            </div>
+                            <a href="/" class="info__button button">Створити тест</a>
+                        </div>
+                        <img 
+                            src="./images/Illustration.svg" 
+                            alt=""
+                            class="info__image"
+                            width="600"
+                            height="515"
+                            loading="lazy"
+                        />
+                    </div>
+                    <!-- <div class="info__diagram">
+                        <h2 class="visually-hidden">Info diagram</h2>
+                        <ul class="info__diagram-list">
+                            <li class="info__diagram-item">
+                                <h2 class="info__diagram-title h3">156 965 тестів</h2>
+                                <div class="info__diagram-descroption">
+                                    <p>створено клієнтами</p>
+                                </div>
+                            </li>
+                            <li class="info__diagram-item">
+                                <h2 class="info__diagram-title h3">1 156 605 людей</h2>
+                                <div class="info__diagram-descroption">
+                                    <p>пройшли тест</p>
+                                </div>
+                            </li>
+                            <li class="info__diagram-item">
+                                <h2 class="info__diagram-title h3">145 000 пройдено</h2>
+                                <div class="info__diagram-descroption">
+                                    <p>тестів за місяць</p>
+                                </div>
+                            </li>
+                            <li class="info__diagram-item">
+                                <h2 class="info__diagram-title h3">10 000 відгуків</h2>
+                                <div class="info__diagram-descroption">
+                                    <p>надіслано нам</p>
+                                </div>
+                            </li>
+                            <li class="info__diagram-item">
+                                <h2 class="info__diagram-title h3">100 закладів</h2>
+                                <div class="info__diagram-descroption">
+                                    <p>працює з нами</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <section class="section container">
+            <header class="section__header">
+              <h2 class="section__title puddle-bg">Зв'яжіться з нами</h2>
+              <div class="section__description">
+                <p>
+                    Зв’яжіться з нами: обговоримо ваші потреби на нашому сайті
+                </p>
+              </div>
+            </header>
+            <div class="section__body">
+              <div class="contact-us">
+                <form class="contact-us__form">
+                  <fieldset class="contact-us__request-types radios">
+                    <legend class="radios__title visually-hidden">Request type</legend>
+                    <label class="radios__item radio">
+                      <input
+                        class="radio__input visually-hidden"
+                        name="request-type"
+                        type="radio"
+                        value="Say Hi"
+                        checked
+                      />
+                      <span class="radio__emulator"></span>
+                      <span class="radio__label">Сказати привіт</span>
+                    </label>
+                    <label class="radios__item radio">
+                      <input
+                        class="radio__input visually-hidden"
+                        name="request-type"
+                        type="radio"
+                        value="Get a Quote"
+                      />
+                      <span class="radio__emulator"></span>
+                      <span class="radio__label">Задати питання</span>
+                    </label>
+                  </fieldset>
+                  <div class="contact-us__body">
+                    <div class="contact-us__field field">
+                      <label class="field__label" for="topic">Тема*</label>
+                      <input
+                        class="field__input"
+                        id="topic"
+                        name="topic"
+                        placeholder="Тема"
+                      />
+                    </div>
+                    <div class="contact-us__field field">
+                      <label class="field__label" for="message">Повідомлення*</label>
+                      <textarea
+                        class="field__input field__input--textarea"
+                        id="message"
+                        name="message"
+                        placeholder="Повідомлення"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  <button
+                    class="contact-us__button button"
+                    type="submit"
+                  >
+                    Відправити повідомлення
+                  </button>
+                </form>
+                <div class="contact-us__blocked">
+                    <div class="contact-us__blocked-inner">
+                        <h1 class="contact-us__blocked-title h3">Для того, щоб зв'язатись з нами, треба увійти в акаунт</h1>
+                        <a class="contact-us__blocked-link" href="/login">Увійти</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="mobile-overlay visible-desktop" id="mobileOverlay">
+        <form class="mobile-overlay__close-button-wrapper" method="dialog">
+            <button 
+                class="mobile-overlay__close-button cross-button"
+                type="submit">
+                <span class="visually-hidden">Close navigation menu</span>  
+            </button>
+        </form>
+        <div class="mobile-overlay__body">
+            <ul class="mobile-overlay__list">
+                <li class="mobile-overlay__item">
+                    <a href="/" class="mobile-overlay__link">Головна</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a href="/" class="mobile-overlay__link">Тести</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a href="/" class="mobile-overlay__link">Інформація</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a href="/" class="mobile-overlay__link">Зв'язок</a>
+                </li>
+                <li>
+                    <div class="header__link">
+                        <a href="/login" class="header__link-login">Вхід</a>
+                        <a href="./register-form.html" class="header__link-register">Реєстрація</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+</body>
+</html>

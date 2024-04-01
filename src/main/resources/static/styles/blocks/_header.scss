@@ -1,11 +1,19 @@
 .header {
     padding-top: 30px;
+
+    @include desktop {
+        padding-top: 20px;
+    }
     
     &__inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
         column-gap: 40px;
+
+        @include desktop {
+            column-gap: 10px;
+        }
     }
 
     &__logo {
@@ -13,7 +21,7 @@
         font-weight: 500;
         user-select: none;
         
-        @include fluid-text(40, 20)
+        @include fluid-text(40, 35)
     }
 
     &__menu {
@@ -24,6 +32,10 @@
             display: flex;
             align-items: center;
             column-gap: 40px;
+
+            @include tablet {
+                column-gap: 20px;
+            }
         }
 
         &-link {
@@ -57,9 +69,16 @@
         column-gap: 20px;
         align-items: center;
 
+        @include desktop {
+            row-gap: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
         &-login, &-register {
             @include flex-center(false);
             
+
             height: var(--button-link);
             padding-inline: 35px;
             font-size: 20px;
@@ -74,4 +93,12 @@
             }
         }
     }
+}
+
+.color-blue {
+    color: var(--color-blue);
+}
+
+.nowrap {
+    white-space: nowrap;
 }

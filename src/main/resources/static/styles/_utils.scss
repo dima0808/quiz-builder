@@ -8,6 +8,18 @@
     @include visually-hidden;
 }
 
+.hidden-desktop {
+    @include desktop {
+        display: none !important;
+    }
+}
+
+.visible-desktop {
+    @include desktop-above {
+        display: none !important;
+    }
+}
+
 .hidden-mobile {
     @include mobile {
         display: none !important;

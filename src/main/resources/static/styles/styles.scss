@@ -7,8 +7,16 @@
     'utils',
     'globals';
 
-@import 
+@import
+    'blocks/cross-button',
+    'blocks/burger-button',
+    'blocks/mobile-overlay',
+    'blocks/radio',
+    'blocks/radios',
     'blocks/header',
     'blocks/section',
     'blocks/info',
-    'blocks/login';
+    'blocks/login',
+    'blocks/field',
+    'blocks/puddle-bg',
+    'blocks/contact-us';

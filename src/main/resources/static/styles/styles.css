@@ -434,12 +434,20 @@ h4, .h4 {
 }
 
 .header {
-  padding-top: 30px;
+  position: fixed;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: var(--color-purple-light);
+  z-index: 101;
 }
 @media (max-width: 1280px) {
   .header {
     padding-top: 20px;
   }
+}
+.header--visible {
+  display: block;
 }
 .header__inner {
   display: flex;
@@ -551,6 +559,10 @@ h4, .h4 {
   white-space: nowrap;
 }
 
+.scroll-header {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
 .section {
   padding-block: var(--section-padding-y);
 }
@@ -578,11 +590,9 @@ h4, .h4 {
     margin-bottom: 40px;
   }
 }
-.section__description {
-  max-width: 580px;
-}
 
 .info {
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   row-gap: var(--section-padding-y);
@@ -1043,6 +1053,7 @@ form input[type=checkbox] {
 }
 
 .puddle-bg {
+  white-space: nowrap;
   padding-inline: 7px;
   background-color: var(--color-blue-light);
   border-radius: var(--border-radius-small);
@@ -1125,7 +1136,8 @@ form input[type=checkbox] {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   z-index: 100;
 }
 .contact-us__blocked-inner {
@@ -1137,8 +1149,6 @@ form input[type=checkbox] {
   max-width: 581px;
   padding: 40px 20px;
   border-radius: var(--border-radius);
-  background-color: var(--color-gray);
-  border: var(--border);
 }
 .contact-us__blocked-title {
   text-align: center;
@@ -1162,4 +1172,250 @@ form input[type=checkbox] {
     color: var(--color-dark);
     background-color: transparent;
   }
+}
+
+.advantages-card {
+  min-height: 310px;
+  padding: 50px;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+}
+@media (hover: hover) {
+  .advantages-card:hover {
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+@media (hover: none) {
+  .advantages-card:active {
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+.advantages-card__header {
+  display: flex;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  align-items: center;
+}
+.advantages-card__body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.advantages-card__body svg {
+  width: 100px;
+  aspect-ratio: 1;
+  fill: var(--color-blue);
+}
+
+.advantages__list {
+  gap: 30px;
+}
+@media (max-width: 1023px) {
+  .advantages__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding-inline: 0;
+  }
+}
+.footer__inner {
+  padding: 55px 60px 50px;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+}
+@media (min-width: 768px) {
+  .footer__inner {
+    border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+  }
+}
+@media (max-width: 767px) {
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 37px;
+    padding: 50px var(--container-padding-x) 30px;
+  }
+}
+.footer__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+}
+@media (max-width: 1023px) {
+  .footer__navigation {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 37px;
+  }
+}
+.footer__navigation:not(:last-child) {
+  margin-bottom: 66px;
+}
+@media (max-width: 767px) {
+  .footer__navigation {
+    display: contents;
+  }
+}
+.footer__menu-list {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+}
+@media (max-width: 767px) {
+  .footer__menu-list {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+}
+.footer__menu-link {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  text-decoration: underline;
+}
+@media (hover: hover) {
+  .footer__menu-link:hover {
+    color: var(--color-blue);
+  }
+}
+@media (hover: none) {
+  .footer__menu-link:active {
+    color: var(--color-blue);
+  }
+}
+@media (max-width: 767px) {
+  .footer__soc1als {
+    order: 1;
+  }
+}
+.footer__body {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+}
+@media (min-width: 768px) {
+  .footer__body:not(:last-child) {
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid currentColor;
+  }
+}
+@media (max-width: 767px) {
+  .footer__body {
+    flex-direction: column;
+    align-items: center;
+    row-gap: inherit;
+  }
+}
+@media (max-width: 480px) {
+  .footer__body {
+    width: 100%;
+  }
+}
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 27px;
+}
+@media (max-width: 767px) {
+  .footer__contacts {
+    align-items: center;
+    text-align: center;
+  }
+}
+.footer__contacts-title {
+  color: var(--color-dark);
+}
+.footer__contacts-body {
+  font-style: normal;
+}
+.footer__contacts-body p {
+  --paragraphMarginBottom: 20px;
+}
+@media (hover: hover) {
+  .footer__contacts-body a:hover {
+    color: var(--color-blue);
+  }
+}
+@media (hover: none) {
+  .footer__contacts-body a:active {
+    color: var(--color-blue);
+  }
+}
+.footer__extra {
+  display: flex;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
+}
+@media (max-width: 767px) {
+  .footer__extra {
+    order: 2;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+    padding-top: 37px;
+    width: 100%;
+    border-top: 1px solid currentColor;
+  }
+}
+.footer__privacy-policy-link {
+  text-decoration: underline;
+}
+@media (hover: hover) {
+  .footer__privacy-policy-link:hover {
+    color: var(--color-blue);
+  }
+}
+@media (hover: none) {
+  .footer__privacy-policy-link:active {
+    color: var(--color-blue);
+  }
+}
+.footer__logo {
+  text-transform: uppercase;
+  font-weight: 500;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-size: clamp(35px, 2.7777777778vw, 40px);
+}
+
+.soc1als__list {
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.soc1als__link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  aspect-ratio: 1;
+  color: var(--color-dark);
+  border-radius: 50%;
+}
+@media (hover: hover) {
+  .soc1als__link:hover {
+    background-color: var(--color-blue);
+  }
+}
+@media (hover: none) {
+  .soc1als__link:active {
+    background-color: var(--color-blue);
+  }
+}
+.soc1als__link svg {
+  fill: var(--color-light);
+  width: 100%;
+  height: 100%;
 }/*# sourceMappingURL=styles.css.map */

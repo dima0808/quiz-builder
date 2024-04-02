@@ -1,0 +1,9 @@
+.advantages {
+    &__list {
+        gap: 30px;
+
+        @include tablet {
+            grid-template-columns: 1fr;
+        }
+    }
+}

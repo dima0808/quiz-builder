@@ -1,26 +1,10 @@
-@import 
-    'normalize',
-    'fonts',
-    'mixins',
-    'media',
-    'variables',
-    'utils',
-    'globals';
+@import "normalize", "fonts", "mixins", "media", "variables", "utils", "globals";
 
-@import
-    'blocks/cross-button',
-    'blocks/burger-button',
-    'blocks/mobile-overlay',
-    'blocks/radio',
-    'blocks/radios',
-    'blocks/header',
-    'blocks/section',
-    'blocks/info',
-    'blocks/login',
-    'blocks/field',
-    'blocks/puddle-bg',
-    'blocks/contact-us',
-    'blocks/advantages-card',
-    'blocks/advantages',
-    'blocks/footer',
-    'blocks/soc1als';
+@import "blocks-index/cross-button", "blocks-index/burger-button",
+  "blocks-index/mobile-overlay", "blocks-index/radio", "blocks-index/radios",
+  "blocks-index/header", "blocks-index/section", "blocks-index/info",
+  "blocks-index/login", "blocks-index/field", "blocks-index/puddle-bg",
+  "blocks-index/contact-us", "blocks-index/advantages-card",
+  "blocks-index/advantages", "blocks-index/footer", "blocks-index/soc1als",
+  "blocks-create-test/before-creation", "blocks-create-test/section-creation",
+  "blocks-create-test/build-test";

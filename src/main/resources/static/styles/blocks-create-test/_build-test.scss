@@ -1,0 +1,39 @@
+.build-test {
+  &-choise {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    gap: 20px;
+  }
+
+  &-img {
+    @include square(150px);
+    display: block;
+  }
+}
+
+.build-test input[type="radio"] {
+  display: none;
+}
+
+.build-test label {
+  display: inline-block;
+  background-color: var(--color-purple-light);
+  padding: 4px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.build-test input[type="radio"]:checked + label {
+  background-color: var(--color-light);
+  border: 3px solid var(--color-accent); /* Додайте обведення для обраної радіокнопки */
+}
+//  Сховати самі кружечки вибору */
+// input[type="radio"] {
+//   display: none;
+// }
+
+// /* Стилізувати вибрані елементи */
+// input[type="radio"]:checked + label {
+//   border: 2px solid red;
+// }

@@ -165,15 +165,15 @@ svg * {
   font-display: swap;
 }
 :root {
-  --color-dark: #191A23;
-  --color-dark-alt: #292A32;
-  --color-light: #FFFFFF;
+  --color-dark: #191a23;
+  --color-dark-alt: #292a32;
+  --color-light: #ffffff;
   --color-purple-light: #f5f9ff;
-  --color-accent: #B9FF66;
-  --color-gray: #F3F3F3;
+  --color-accent: #b9ff66;
+  --color-gray: #f3f3f3;
   --color-login: #fff;
-  --color-blue: #5372F0;
-  --color-blue-light:#a9b9f8;
+  --color-blue: #5372f0;
+  --color-blue-light: #a9b9f8;
   --color-gray-alt: #898989;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
@@ -204,6 +204,10 @@ svg * {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin-inline: auto;
   padding-inline: var(--container-padding-x);
+}
+
+.header .container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 7.5);
 }
 
 .visually-hidden {
@@ -244,6 +248,12 @@ svg * {
   }
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-size: clamp(16px, 1.25vw, 18px);
   font-family: var(--font-family-base);
@@ -266,23 +276,30 @@ a {
   color: inherit;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 500;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: clamp(43px, 4.1666666667vw, 60px);
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: clamp(36px, 2.7777777778vw, 40px);
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: clamp(26px, 2.0833333333vw, 30px);
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: clamp(18px, 1.3888888889vw, 20px);
 }
 
@@ -440,6 +457,7 @@ h4, .h4 {
   padding-bottom: 15px;
   background-color: var(--color-purple-light);
   z-index: 101;
+  top: 0;
 }
 @media (max-width: 1280px) {
   .header {
@@ -1418,4 +1436,59 @@ form input[type=checkbox] {
   fill: var(--color-light);
   width: 100%;
   height: 100%;
+}
+
+.before-creation {
+  padding-left: 30px;
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+.before-creation-h1 {
+  margin-bottom: 15px;
+}
+.before-creation-give-name {
+  font-size: clamp(24px, 2.0833333333vw, 30px);
+  padding-block: 10px;
+}
+
+.field__input--textarea-small {
+  height: 60px;
+  padding-block: 18px;
+  resize: none;
+  width: 55%;
+}
+
+.section-creation {
+  padding: 20px 45px;
+  background-color: var(--color-blue-light);
+  border-radius: var(--border-radius-large);
+}
+
+.build-test-choise {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  gap: 20px;
+}
+.build-test-img {
+  width: 150px;
+  aspect-ratio: 1;
+  display: block;
+}
+
+.build-test input[type=radio] {
+  display: none;
+}
+
+.build-test label {
+  display: inline-block;
+  background-color: var(--color-purple-light);
+  padding: 4px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.build-test input[type=radio]:checked + label {
+  background-color: var(--color-light);
+  border: 3px solid var(--color-accent); /* Додайте обведення для обраної радіокнопки */
 }/*# sourceMappingURL=styles.css.map */

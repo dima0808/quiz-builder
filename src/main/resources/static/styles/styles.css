@@ -167,6 +167,7 @@ svg * {
 :root {
   --color-dark: #191a23;
   --color-dark-alt: #292a32;
+  --color-text-grey: #3a3a3a;
   --color-light: #ffffff;
   --color-purple-light: #f5f9ff;
   --color-accent: #b9ff66;
@@ -174,6 +175,7 @@ svg * {
   --color-login: #fff;
   --color-blue: #5372f0;
   --color-blue-light: #a9b9f8;
+  --color-blue-lighter: #d4dcfc;
   --color-gray-alt: #898989;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
@@ -1511,6 +1513,31 @@ form input[type=checkbox] {
   font-size: clamp(24px, 2.0833333333vw, 30px);
   padding-block: 10px;
 }
+.before-creation-text {
+  position: relative;
+  display: block;
+  width: 55%;
+  color: var(--color-text-grey);
+  background-color: var(--color-light);
+  border: 1px solid var(--color-dark);
+  border-radius: var(--border-radius-small);
+  height: 50px;
+  padding: 13px 35px 13px 20px;
+  resize: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.before-creation-text:focus, .before-creation-text:active, .before-creation-text:hover {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px rgba(176, 198, 225, 0.6);
+  border: 1px solid var(--color-blue);
+}
+.before-creation-text-description {
+  margin-top: 3px;
+  height: 100px;
+}
 
 .field__input--textarea-small {
   height: 60px;
@@ -1521,7 +1548,7 @@ form input[type=checkbox] {
 
 .section-creation {
   padding: 20px 45px;
-  background-color: var(--color-blue-light);
+  background-color: var(--color-blue-lighter);
   border-radius: var(--border-radius-large);
 }
 
@@ -1560,24 +1587,24 @@ form input[type=checkbox] {
 .dropdown__button {
   position: relative;
   display: block;
-  width: 100%;
+  width: 53%;
   text-align: left;
   background-color: var(--color-light);
-  border: 1px solid var(--color-blue);
+  border: 1px solid var(--color-dark);
   border-radius: var(--border-radius-small);
   height: 46px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 20px;
-  padding-right: 35px;
+  color: var(--color-text-grey);
+  padding: 13px 35px 13px 20px;
+  margin-top: 13px;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
 }
-.dropdown__button:focus, .dropdown__button--active {
+.dropdown__button:focus, .dropdown__button--active, .dropdown__button:hover {
   outline: none;
   box-shadow: 0px 0px 0px 4px rgba(176, 198, 225, 0.6);
+  border: 1px solid var(--color-blue);
 }
 .dropdown__button::after {
   content: "";
@@ -1601,7 +1628,7 @@ form input[type=checkbox] {
   box-shadow: 0px 4px 8px rgba(176, 198, 225, 0.6);
   overflow: hidden;
   border-radius: var(--border-radius-small);
-  width: 100%;
+  width: 53%;
   z-index: 1;
 }
 .dropdown__list--visible {

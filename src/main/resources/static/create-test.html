@@ -62,18 +62,18 @@
             required
           ></textarea>
         </div>
-        <div class="contact-us__field field">
-          <label class="before-creation-give-name" for="course-theme"
-            >Тема курсу:</label
-          >
-          <textarea
-            class="field__input field__input--textarea-small"
-            id="course-theme"
-            name="course-theme"
-            placeholder="Повідомлення"
-            required
-          ></textarea>
-        </div>
+        <div class="form-group">
+          <div class="dropdown">
+              <button class="dropdown__button">Виберіть тему:</button>
+              <ul class="dropdown__list">
+                  <li class="dropdown__list-item" data-value="biology">Біологія</li>
+                  <li class="dropdown__list-item" data-value="geography">Географія</li>
+                  <li class="dropdown__list-item" data-value="basadate">ДБ</li>
+                  <li class="dropdown__list-item" data-value="ak">Архітектура Комп'ютера</li>
+              </ul>
+              <input type="text" name="select-category" value="" class="dropdown__input-hidden" >
+          </div>
+      </div>
       </section>
       <section class="container section-creation">
         <h2 before-creation-h1>
@@ -148,5 +148,6 @@
       </div>
     </dialog>
     <script src="js/header-visible.js"></script>
+    <script src="js/dropdown.js"></script>
   </body>
 </html>

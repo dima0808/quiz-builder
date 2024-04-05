@@ -1,0 +1,15 @@
+.popular-test {
+    &__list {
+        gap: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        @include tablet {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item {
+        margin-inline: auto;
+    }
+}

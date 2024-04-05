@@ -174,6 +174,7 @@ svg * {
   --color-gray: #f3f3f3;
   --color-login: #fff;
   --color-blue: #5372f0;
+  --color-blue-shadow: #2a3978;
   --color-blue-light: #a9b9f8;
   --color-blue-lighter: #d4dcfc;
   --color-gray-alt: #898989;
@@ -224,6 +225,10 @@ svg * {
           clip-path: inset(100%) !important;
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
+}
+
+.relative {
+  position: relative;
 }
 
 @media (max-width: 1280px) {
@@ -1157,7 +1162,7 @@ form input[type=checkbox] {
   width: 100%;
   height: 100%;
   -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   z-index: 100;
 }
 .contact-us__blocked-inner {
@@ -1440,18 +1445,100 @@ form input[type=checkbox] {
   height: 100%;
 }
 
-.popular-test__list {
-  gap: 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.popular-test {
+  overflow: hidden;
+  padding-block: 5px;
+  margin-inline: 5px;
 }
-@media (max-width: 1023px) {
+.popular-test__list {
+  display: flex;
+  transition: transform 0.5s ease;
+  -moz-column-gap: 2%;
+       column-gap: 2%;
+}
+@media (max-width: 1280px) {
   .popular-test__list {
-    grid-template-columns: 1fr;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
   }
 }
 .popular-test__item {
-  margin-inline: auto;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  width: 32%;
+}
+@media (max-width: 1280px) {
+  .popular-test__item {
+    scroll-snap-align: start;
+  }
+}
+.popular-test__page-test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  height: 50px;
+}
+.popular-test__link {
+  padding: 10px 20px;
+  border-radius: var(--border-radius-small);
+  color: var(--color-blue-shadow);
+  background-color: var(--color-blue-lighter);
+  border: 1px solid var(--color-blue-light);
+}
+@media (hover: hover) {
+  .popular-test__link:hover {
+    background-color: var(--color-light);
+  }
+}
+@media (hover: none) {
+  .popular-test__link:active {
+    background-color: var(--color-light);
+  }
+}
+.popular-test button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-blue-lighter);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .popular-test button:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+@media (hover: none) {
+  .popular-test button:active {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+.popular-test button svg {
+  width: 40px;
+  aspect-ratio: 1;
+  fill: var(--color-blue);
+}
+.popular-test #prevButton {
+  left: 0;
+  transform: translate(-120%, -50%);
+}
+.popular-test #nextButton {
+  right: 0;
+  transform: translate(120%, -50%);
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .popular-test-card {
@@ -1459,6 +1546,7 @@ form input[type=checkbox] {
   padding: 30px;
   background-color: var(--color-light);
   border-radius: var(--border-radius);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 1023px) {
   .popular-test-card {

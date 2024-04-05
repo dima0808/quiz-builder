@@ -17,7 +17,7 @@
           <a href="/" title="Головна" class="icon-title"><i class="fas fa-arrow-left"></i></a>
         </h2>
       </header>
-      <form>
+      <form th:action="@{/authenticateUser}" method="POST">
         <div class="field username">
           <div class="input-area">
             <input type="text" id="username" name="username" required placeholder="Enter login">

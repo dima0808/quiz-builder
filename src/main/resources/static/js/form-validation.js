@@ -3,63 +3,49 @@ const eField = form.querySelector(".email"),
   eInput = eField.querySelector("input"),
   pField = form.querySelector(".password"),
   pInput = pField.querySelector("input"),
-  // nField = form.querySelector(".name"),
-  // nInput = nField.querySelector("input"),
   lField = form.querySelector(".username"),
   lInput = lField.querySelector("input"),
   rpField = form.querySelector(".repeat-password"),
   rpInput = rpField.querySelector("input");
 
-form.onsubmit = (e) => {
-  e.preventDefault(); //попередження від відправки форми
-  // якщо електронна адреса та пароль пусті, то додайте клас shake, інакше викличте відповідну функцію
+form.onsubmit = async (e) => {
+  e.preventDefault(); // Попередження від відправки форми
+
+  // Перевірка полів форми на валідність
   eInput.value == "" ? eField.classList.add("shake", "error") : checkEmail();
   pInput.value == "" ? pField.classList.add("shake", "error") : checkPass();
-  // nInput.value == "" ? nField.classList.add("shake", "error") : checkName();
   lInput.value == "" ? lField.classList.add("shake", "error") : checkLogin();
   rpInput.value == "" ? rpField.classList.add("shake", "error") : checkRepeatPassword();
 
+  // Видалення класу shake через 500мс
   setTimeout(() => {
-    //видалення класу shake через 500мс
     eField.classList.remove("shake");
     pField.classList.remove("shake");
-    // nField.classList.remove("shake");
     lField.classList.remove("shake");
     rpField.classList.remove("shake");
   }, 500);
 
-  eInput.onkeyup = () => {
-    checkEmail();
-  }; //виклик функції checkEmail при введенні ключа email
-  pInput.onkeyup = () => {
-    checkPass();
-  }; //виклик функції checkPassword при введенні ключа пас
-  // nInput.onkeyup = () => {
-  //   checkName();
-  // };
-  lInput.onkeyup = () => {
-    checkLogin();
-  };
-  rpInput.onkeyup = () => {
-    checkRepeatPassword();
-  };
+  // Відслідковування введення користувачем у поля форми
+  eInput.onkeyup = () => { checkEmail(); };
+  pInput.onkeyup = () => { checkPass(); };
+  lInput.onkeyup = () => { checkLogin(); };
+  rpInput.onkeyup = () => { checkRepeatPassword(); };
 
+  // Функція перевірки електронної адреси
   function checkEmail() {
-    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; //шаблон для перевірки електронної адреси
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (!eInput.value.match(pattern)) {
-      //якщо шаблон не відповідає, то додайте помилку та видаліть клас valid
       eField.classList.add("error");
       eField.classList.remove("valid");
       let errorTxt = eField.querySelector(".error-txt");
-      eInput.value != ""
-        ? (errorTxt.innerText = "Введіть дійсну адресу електронної пошти")
-        : (errorTxt.innerText = "Поле не може бути пустим");
+      eInput.value != "" ? (errorTxt.innerText = "Введіть дійсну адресу електронної пошти") : (errorTxt.innerText = "Поле не може бути пустим");
     } else {
       eField.classList.remove("error");
       eField.classList.add("valid");
     }
   }
 
+  // Функція перевірки паролю
   function checkPass() {
     if (pInput.value == "") {
       pField.classList.add("error");
@@ -70,16 +56,7 @@ form.onsubmit = (e) => {
     }
   }
 
-  // function checkName() {
-  //   if (nInput.value == "") {
-  //     nField.classList.add("error");
-  //     nField.classList.remove("valid");
-  //   } else {
-  //     nField.classList.remove("error");
-  //     nField.classList.add("valid");
-  //   }
-  // }
-
+  // Функція перевірки логіну
   function checkLogin() {
     if (lInput.value == "") {
       lField.classList.add("error");
@@ -90,6 +67,7 @@ form.onsubmit = (e) => {
     }
   }
 
+  // Функція перевірки повторення паролю
   function checkRepeatPassword() {
     if (rpInput.value == "") {
       rpField.classList.add("error");
@@ -107,13 +85,36 @@ form.onsubmit = (e) => {
     }
   }
 
+  // Якщо хоча б одне поле має помилку, не відправляємо форму
   if (
     !eField.classList.contains("error") &&
     !pField.classList.contains("error") &&
-    // !nField.classList.contains("error") &&
     !lField.classList.contains("error") &&
     !rpField.classList.contains("error")
   ) {
-    window.location.href = form.getAttribute("action");
+    try {
+      const formData = {
+        username: lInput.value,
+        email: eInput.value,
+        password: pInput.value
+      };
+
+      // Відправка форми на сервер
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Помилка при виклику POST');
+      }
+
+      console.log('Користувач успішно зареєстрований!');
+    } catch (error) {
+      console.error('Помилка при реєстрації:', error.message);
+    }
   }
 };

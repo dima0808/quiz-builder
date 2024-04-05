@@ -2,6 +2,7 @@ package com.testkpi.quizbuilder.service.impl;
 
 import com.testkpi.quizbuilder.entity.Role;
 import com.testkpi.quizbuilder.entity.User;
+import com.testkpi.quizbuilder.exception.UserException;
 import com.testkpi.quizbuilder.payload.RegisterDto;
 import com.testkpi.quizbuilder.repository.RoleRepository;
 import com.testkpi.quizbuilder.repository.UserRepository;
@@ -32,11 +33,11 @@ public class AuthServiceImpl implements AuthService {
     public String register(RegisterDto registerDto) {
 
         if (userRepository.existsByUsername(registerDto.getUsername())) {
-            return "User already exists.";
+            throw new UserException("User already exists.");
         }
 
         if (userRepository.existsByEmail(registerDto.getEmail())) {
-            return "Email already exists.";
+            throw new UserException("Email already exists.");
         }
 
         User user = new User();

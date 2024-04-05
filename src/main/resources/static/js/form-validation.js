@@ -108,11 +108,25 @@ form.onsubmit = async (e) => {
         body: JSON.stringify(formData)
       });
 
-      if (!response.ok) {
-        throw new Error('Помилка при виклику POST');
+      if (response.status === 201) {
+        window.location.href = "/";
+      } else {
+        response.json().then(message => {
+          if (message.message === 'User already exists.') {
+            lField.classList.add("error");
+            lField.classList.remove("valid");
+            let errorTxt = lField.querySelector(".error-txt");
+            errorTxt.innerText = "Такий користувач вже існує";
+          } else {
+            eField.classList.add("error");
+            eField.classList.remove("valid");
+            let errorTxt = eField.querySelector(".error-txt");
+            errorTxt.innerText = "Така пошта вже існує";
+          }
+        })
+          
       }
 
-      console.log('Користувач успішно зареєстрований!');
     } catch (error) {
       console.error('Помилка при реєстрації:', error.message);
     }

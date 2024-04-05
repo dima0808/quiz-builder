@@ -28,6 +28,7 @@ public class AuthController {
 
     @PostMapping(value = {"/register", "/signup"})
     public ResponseEntity<UserResponse> getLoginPage(@RequestBody RegisterDto registerDto) {
+        authService.register(registerDto);
         UserResponse userResponse = new UserResponse(HttpStatus.CREATED.value(),
                 "User " + registerDto.getUsername() + " has successfully created.", System.currentTimeMillis());
         return new ResponseEntity<>(userResponse, HttpStatus.CREATED);

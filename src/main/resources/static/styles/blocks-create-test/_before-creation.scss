@@ -1,9 +1,23 @@
 .before-creation {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 20px;
   padding-left: 30px;
   margin-top: 40px;
   padding-bottom: 60px;
   &-h1 {
     margin-bottom: 15px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    @include fluid-text(36, 24);
+    &-blue {
+      color: var(--color-blue-text);
+    }
+  }
+  &-h2 {
+    line-height: 1.2;
+    margin-bottom: 15px;
+    @include fluid-text(32, 22);
   }
   &-give-name {
     @include fluid-text(30, 24);
@@ -12,7 +26,7 @@
   &-text {
     position: relative;
     display: block;
-    width: 55%;
+    width: 100%;
     color: var(--color-text-grey);
     background-color: var(--color-light);
     border: 1px solid var(--color-dark);
@@ -41,5 +55,7 @@
   height: 60px;
   padding-block: 18px;
   resize: none;
-  width: 55%;
+  width: 100%;
+}
+.before-content-img {
 }

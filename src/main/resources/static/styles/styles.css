@@ -175,8 +175,10 @@ svg * {
   --color-login: #fff;
   --color-blue: #5372f0;
   --color-blue-shadow: #2a3978;
+  --color-blue-text: #222e60;
   --color-blue-light: #a9b9f8;
   --color-blue-lighter: #d4dcfc;
+  --color-blue-the-lightest: #f6f8fe;
   --color-gray-alt: #898989;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
@@ -1590,12 +1592,26 @@ form input[type=checkbox] {
 }
 
 .before-creation {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 20px;
   padding-left: 30px;
   margin-top: 40px;
   padding-bottom: 60px;
 }
 .before-creation-h1 {
   margin-bottom: 15px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  font-size: clamp(24px, 2.5vw, 36px);
+}
+.before-creation-h1-blue {
+  color: var(--color-blue-text);
+}
+.before-creation-h2 {
+  line-height: 1.2;
+  margin-bottom: 15px;
+  font-size: clamp(22px, 2.2222222222vw, 32px);
 }
 .before-creation-give-name {
   font-size: clamp(24px, 2.0833333333vw, 30px);
@@ -1604,7 +1620,7 @@ form input[type=checkbox] {
 .before-creation-text {
   position: relative;
   display: block;
-  width: 55%;
+  width: 100%;
   color: var(--color-text-grey);
   background-color: var(--color-light);
   border: 1px solid var(--color-dark);
@@ -1631,11 +1647,11 @@ form input[type=checkbox] {
   height: 60px;
   padding-block: 18px;
   resize: none;
-  width: 55%;
+  width: 100%;
 }
 
 .section-creation {
-  padding: 20px 45px;
+  padding: 20px 48px;
   background-color: var(--color-blue-lighter);
   border-radius: var(--border-radius-large);
 }
@@ -1675,7 +1691,7 @@ form input[type=checkbox] {
 .dropdown__button {
   position: relative;
   display: block;
-  width: 53%;
+  width: 95%;
   text-align: left;
   background-color: var(--color-light);
   border: 1px solid var(--color-dark);
@@ -1738,12 +1754,12 @@ form input[type=checkbox] {
 }
 @media (hover: hover) {
   .dropdown__list-item:hover {
-    background-color: rgba(176, 198, 225, 0.26);
+    background-color: var(--color-blue-the-lightest);
   }
 }
 @media (hover: none) {
   .dropdown__list-item:active {
-    background-color: rgba(176, 198, 225, 0.26);
+    background-color: var(--color-blue-the-lightest);
   }
 }
 .dropdown__input-hidden {

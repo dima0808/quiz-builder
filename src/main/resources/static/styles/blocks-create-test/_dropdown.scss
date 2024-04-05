@@ -4,7 +4,7 @@
   &__button {
     position: relative;
     display: block;
-    width: 53%;
+    width: 95%;
     text-align: left;
 
     background-color: var(--color-light);
@@ -86,7 +86,7 @@
       }
 
       @include hover {
-        background-color: rgba(176, 198, 225, 0.26);
+        background-color: var(--color-blue-the-lightest);
       }
     }
   }

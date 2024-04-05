@@ -1,6 +1,7 @@
 package com.testkpi.quizbuilder.controller;
 
 import com.testkpi.quizbuilder.payload.RegisterDto;
+import com.testkpi.quizbuilder.response.UserResponse;
 import com.testkpi.quizbuilder.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,9 @@ public class AuthController {
     }
 
     @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<String> getLoginPage(@RequestBody RegisterDto registerDto) {
-        String response = authService.register(registerDto);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    public ResponseEntity<UserResponse> getLoginPage(@RequestBody RegisterDto registerDto) {
+        UserResponse userResponse = new UserResponse(HttpStatus.CREATED.value(),
+                "User " + registerDto.getUsername() + " has successfully created.", System.currentTimeMillis());
+        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 }

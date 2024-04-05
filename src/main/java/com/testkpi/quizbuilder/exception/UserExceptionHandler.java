@@ -1,5 +1,6 @@
 package com.testkpi.quizbuilder.exception;
 
+import com.testkpi.quizbuilder.response.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UserExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> handleException(UserException exc) {
+    public ResponseEntity<UserResponse> handleException(UserException exc) {
 
-        UserErrorResponse error = new UserErrorResponse();
+        UserResponse error = new UserResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(exc.getMessage());
@@ -21,9 +22,9 @@ public class UserExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> handleException(Exception exc) {
+    public ResponseEntity<UserResponse> handleException(Exception exc) {
 
-        UserErrorResponse error = new UserErrorResponse();
+        UserResponse error = new UserResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(exc.getMessage());

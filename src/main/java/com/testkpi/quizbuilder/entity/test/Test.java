@@ -23,6 +23,7 @@ public class Test {
     private String name;
     private String description;
     private String topic;
+    private Short status;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "tests_questions",

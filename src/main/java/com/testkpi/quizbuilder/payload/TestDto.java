@@ -16,5 +16,6 @@ public class TestDto {
     private String name;
     private String description;
     private String topic;
+    private Short status;
     private List<Question> questions;
 }

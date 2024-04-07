@@ -100,7 +100,7 @@ form.onsubmit = async (e) => {
       };
 
       // Відправка форми на сервер
-      const response = await fetch('/register', {
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

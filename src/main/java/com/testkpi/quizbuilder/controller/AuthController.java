@@ -26,7 +26,7 @@ public class AuthController {
         return "login-form";
     }
 
-    @PostMapping(value = {"/register", "/signup"})
+    @PostMapping(value = {"/api/register", "/api/signup"})
     public ResponseEntity<UserResponse> getLoginPage(@RequestBody RegisterDto registerDto) {
         authService.register(registerDto);
         UserResponse userResponse = new UserResponse(HttpStatus.CREATED.value(),

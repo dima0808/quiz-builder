@@ -180,6 +180,7 @@ svg * {
   --color-blue-lighter: #d4dcfc;
   --color-blue-the-lightest: #f6f8fe;
   --color-gray-alt: #898989;
+  --color-red: #e03131;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
   --border-radius-small: 7px;
@@ -472,6 +473,63 @@ h4,
   .header {
     padding-top: 20px;
   }
+}
+.header__btn-exit {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__btn-exit svg {
+  width: 25px;
+}
+@media (hover: hover) {
+  .header__btn-exit svg:hover {
+    fill: var(--color-red);
+  }
+}
+@media (hover: none) {
+  .header__btn-exit svg:active {
+    fill: var(--color-red);
+  }
+}
+.header__user {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+.header__user-logined {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .header__user-logined:hover {
+    color: var(--color-blue);
+  }
+  .header__user-logined:hover svg {
+    fill: var(--color-blue);
+  }
+}
+@media (hover: none) {
+  .header__user-logined:active {
+    color: var(--color-blue);
+  }
+  .header__user-logined:active svg {
+    fill: var(--color-blue);
+  }
+}
+.header__user-logined svg {
+  width: 20px;
 }
 .header--visible {
   display: block;

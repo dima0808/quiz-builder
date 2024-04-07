@@ -11,6 +11,46 @@
     padding-top: 20px;
   }
 
+  &__btn-exit {
+    @include reset-button;
+    @include flex-center(false);
+
+    svg {
+      width: 25px;
+
+      @include hover {
+        fill: var(--color-red);
+      }
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    &-logined {
+      @include reset-button;
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+      font-size: 20px;
+      cursor: pointer;
+
+      @include hover {
+        color: var(--color-blue);
+        
+        svg {
+          fill: var(--color-blue);
+        }
+      }
+
+      svg {
+        width: 20px;
+      }
+    }
+  }
+
   &--visible {
     display: block;
   }

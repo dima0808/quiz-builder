@@ -178,12 +178,15 @@ svg * {
   --color-blue-text: #222e60;
   --color-blue-light: #a9b9f8;
   --color-blue-lighter: #d4dcfc;
+  --color-blue-more-lighter: #eef1fe;
   --color-blue-the-lightest: #f6f8fe;
   --color-gray-alt: #898989;
   --color-red: #e03131;
+  --color-red-light: #ffe3e3;
   --border: 1px solid var(--color-dark);
   --border-radius: 14px;
   --border-radius-small: 7px;
+  --border-radius-small-button: 5px;
   --border-radius-large: 45px;
   --shadow: 0 5px 0 0 var(--color-dark);
   --font-family-base: "Space Grotesk", sans-serif;
@@ -1691,6 +1694,9 @@ form input[type=checkbox] {
   line-height: 20px;
   cursor: pointer;
 }
+.before-creation-text-blue {
+  color: var(--color-blue-text);
+}
 .before-creation-text:focus, .before-creation-text:active, .before-creation-text:hover {
   outline: none;
   box-shadow: 0px 0px 0px 4px rgba(176, 198, 225, 0.6);
@@ -1710,8 +1716,13 @@ form input[type=checkbox] {
 
 .section-creation {
   padding: 20px 48px;
+  margin-bottom: 90px;
   background-color: var(--color-blue-lighter);
   border-radius: var(--border-radius-large);
+}
+
+.question-area {
+  margin-bottom: 15px;
 }
 
 .build-test-choise {
@@ -1777,7 +1788,7 @@ form input[type=checkbox] {
   width: 0;
   height: 0;
   border-width: 10.4px 6px 0 6px;
-  border-color: var(--color-blue) transparent transparent transparent;
+  border-color: var(--color-blue-light) transparent transparent transparent;
   border-style: solid;
   pointer-events: none;
 }
@@ -1826,8 +1837,101 @@ form input[type=checkbox] {
 
 .radio-batton-tests-ol {
   padding-left: 20px;
+  list-style-type: lower-alpha;
 }
 .radio-batton-tests-li {
+  display: list-item;
+}
+.radio-batton-tests-li-grid {
   display: grid;
-  grid-template-columns: auto 40px;
+  grid-template-columns: auto 120px;
+  gap: 10%;
+}
+.radio-batton-tests-li:not(:last-child) {
+  margin-bottom: 12px;
+}
+.radio-batton-tests-buttons {
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.radio-batton-tests-buttons-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  aspect-ratio: 1;
+  position: relative;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.radio-batton-tests-buttons-circle::after {
+  z-index: 9999;
+  border: 1px solid var(--color-blue-shadow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 66%;
+  aspect-ratio: 1;
+  content: "";
+  background-color: var(--color-accent);
+  border-radius: inherit;
+  transition-duration: var(--transition-duration);
+}
+.radio-batton-tests-buttons-delete {
+  width: 50px;
+  aspect-ratio: 1;
+  transition: all 0.2s ease-out;
+  background-color: var(--color-blue-more-lighter);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+  color: var(--color-blue-shadow);
+  cursor: pointer;
+}
+.radio-batton-tests-buttons-delete:hover, .radio-batton-tests-buttons-delete:active {
+  background-color: var(--color-blue-the-lightest);
+  color: var(--color-red);
+}
+.radio-batton-tests-plus {
+  width: 50px;
+  aspect-ratio: 1;
+  transition: all 0.2s ease-out;
+  background-color: var(--color-blue-more-lighter);
+  color: var(--color-blue-shadow);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+  cursor: pointer;
+}
+.radio-batton-tests-plus:hover, .radio-batton-tests-plus:active {
+  background-color: var(--color-blue-the-lightest);
+  color: var(--color-accent);
+}
+
+.buttons-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 10px 0;
+}
+
+.button-save-test {
+  width: 150px;
+  height: 50px;
+  transition: all 0.2s ease-out;
+  background-color: var(--color-blue-more-lighter);
+  color: var(--color-blue-shadow);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.button-save-test:hover,
+.button-save-test:active {
+  background-color: var(--color-blue-the-lightest);
+  color: var(--color-blue-shadow);
 }/*# sourceMappingURL=styles.css.map */

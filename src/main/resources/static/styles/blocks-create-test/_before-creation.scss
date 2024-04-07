@@ -38,6 +38,9 @@
     font-size: 18px;
     line-height: 20px;
     cursor: pointer;
+    &-blue {
+      color: var(--color-blue-text);
+    }
     &:focus,
     &:active,
     &:hover {

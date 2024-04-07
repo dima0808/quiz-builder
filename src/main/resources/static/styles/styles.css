@@ -1732,7 +1732,7 @@ form input[type=checkbox] {
   box-shadow: 0px 4px 8px rgba(176, 198, 225, 0.6);
   overflow: hidden;
   border-radius: var(--border-radius-small);
-  width: 53%;
+  width: 95%;
   z-index: 1;
 }
 .dropdown__list--visible {
@@ -1764,4 +1764,12 @@ form input[type=checkbox] {
 }
 .dropdown__input-hidden {
   display: none;
+}
+
+.radio-batton-tests-ol {
+  padding-left: 20px;
+}
+.radio-batton-tests-li {
+  display: grid;
+  grid-template-columns: auto 40px;
 }/*# sourceMappingURL=styles.css.map */

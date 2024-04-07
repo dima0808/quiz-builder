@@ -1,0 +1,9 @@
+.radio-batton-tests {
+  &-ol {
+    padding-left: 20px;
+  }
+  &-li {
+    display: grid;
+    grid-template-columns: auto 40px;
+  }
+}

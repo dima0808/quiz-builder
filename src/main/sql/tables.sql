@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS public.tests
 CREATE TABLE IF NOT EXISTS public.questions
 (
     id bigserial NOT NULL PRIMARY KEY,
-    text varchar(255),
-    test_id bigint
+    text varchar(255) NOT NULL,
+    type smallint NOT NULL
 );
 
 -- Table: public.answers
@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS public.questions
 CREATE TABLE IF NOT EXISTS public.answers
 (
     id bigserial NOT NULL PRIMARY KEY,
+    is_correct boolean NOT NULL,
     text varchar(255)
 );
 

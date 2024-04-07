@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterDto registerDto) {
+    public User register(RegisterDto registerDto) {
 
         if (userRepository.existsByUsername(registerDto.getUsername())) {
             throw new UserException("User already exists.");
@@ -52,6 +52,6 @@ public class AuthServiceImpl implements AuthService {
         user.setRoles(roles);
 
         userRepository.save(user);
-        return "User " + user.getUsername() + " has successfully registered.";
+        return user;
     }
 }

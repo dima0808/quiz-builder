@@ -42,7 +42,7 @@
       width: 0;
       height: 0;
       border-width: 10.4px 6px 0 6px;
-      border-color: var(--color-blue) transparent transparent transparent;
+      border-color: var(--color-blue-light) transparent transparent transparent;
       border-style: solid;
 
       pointer-events: none;
@@ -61,7 +61,7 @@
     overflow: hidden;
 
     border-radius: var(--border-radius-small);
-    width: 53%;
+    width: 95%;
 
     z-index: 1;
 

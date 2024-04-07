@@ -1,0 +1,101 @@
+.radio-batton-tests {
+  &-ol {
+    padding-left: 20px;
+    list-style-type: lower-alpha;
+  }
+
+  &-li {
+    display: list-item;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: auto 120px;
+      gap: 10%;
+    }
+  }
+  &-li:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  &-buttons {
+    display: flex;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    &-circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include square(35px);
+      position: relative;
+      background-color: var(--color-light);
+      border: 1px solid var(--color-blue-shadow);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    &-circle::after {
+      z-index: 9999;
+      border: 1px solid var(--color-blue-shadow);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 66%;
+      aspect-ratio: 1;
+      content: "";
+      background-color: var(--color-accent);
+      border-radius: inherit;
+      transition-duration: var(--transition-duration);
+    }
+    &-delete {
+      @include square(50px);
+      @include transition-out();
+      background-color: var(--color-blue-more-lighter);
+      border: 1px solid var(--color-blue-shadow);
+      border-radius: var(--border-radius-small-button);
+      color: var(--color-blue-shadow);
+      cursor: pointer;
+    }
+
+    &-delete:hover,
+    &-delete:active {
+      background-color: var(--color-blue-the-lightest);
+      color: var(--color-red);
+    }
+  }
+  &-plus {
+    @include square(50px);
+    @include transition-out();
+    background-color: var(--color-blue-more-lighter);
+    color: var(--color-blue-shadow);
+    border: 1px solid var(--color-blue-shadow);
+    border-radius: var(--border-radius-small-button);
+    cursor: pointer;
+  }
+  &-plus:hover,
+  &-plus:active {
+    background-color: var(--color-blue-the-lightest);
+    color: var(--color-accent);
+  }
+}
+.buttons-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 10px 0;
+}
+.button-save-test {
+  width: 150px;
+  height: 50px;
+  @include transition-out();
+  background-color: var(--color-blue-more-lighter);
+  color: var(--color-blue-shadow);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+  line-height: 1.1;
+  cursor: pointer;
+}
+.button-save-test:hover,
+.button-save-test:active {
+  background-color: var(--color-blue-the-lightest);
+  color: var(--color-blue-shadow);
+}

@@ -18,7 +18,7 @@
   }
 
   &-buttons {
-    display: flex;
+    display: inline-flex;
     column-gap: 20px;
     justify-content: center;
     align-items: center;
@@ -34,7 +34,20 @@
       cursor: pointer;
     }
     &-circle::after {
-      z-index: 9999;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: calc(66% - 2px);
+      aspect-ratio: 1;
+      content: "";
+      background-color: var(--color-gray-light);
+
+      border-radius: inherit;
+      transition-duration: var(--transition-duration);
+    }
+    &-circle::before {
+      z-index: 1;
       border: 1px solid var(--color-blue-shadow);
       position: absolute;
       top: 50%;
@@ -46,8 +59,10 @@
       background-color: var(--color-accent);
       border-radius: inherit;
       transition-duration: var(--transition-duration);
+      transform: scale(0);
     }
     &-delete {
+      @include flex-center();
       @include square(50px);
       @include transition-out();
       background-color: var(--color-blue-more-lighter);
@@ -64,6 +79,7 @@
     }
   }
   &-plus {
+    @include flex-center();
     @include square(50px);
     @include transition-out();
     background-color: var(--color-blue-more-lighter);
@@ -98,4 +114,9 @@
 .button-save-test:active {
   background-color: var(--color-blue-the-lightest);
   color: var(--color-blue-shadow);
+}
+.radio-batton-tests-buttons
+  input[type="radio"]:checked
+  + .radio-batton-tests-buttons-circle::before {
+  transform: scale(1);
 }

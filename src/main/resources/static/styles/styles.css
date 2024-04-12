@@ -181,6 +181,7 @@ svg * {
   --color-blue-more-lighter: #eef1fe;
   --color-blue-the-lightest: #f6f8fe;
   --color-gray-alt: #898989;
+  --color-gray-light: #f8f9fa;
   --color-red: #e03131;
   --color-red-light: #ffe3e3;
   --border: 1px solid var(--color-dark);
@@ -1851,7 +1852,7 @@ form input[type=checkbox] {
   margin-bottom: 12px;
 }
 .radio-batton-tests-buttons {
-  display: flex;
+  display: inline-flex;
   -moz-column-gap: 20px;
        column-gap: 20px;
   justify-content: center;
@@ -1870,7 +1871,19 @@ form input[type=checkbox] {
   cursor: pointer;
 }
 .radio-batton-tests-buttons-circle::after {
-  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: calc(66% - 2px);
+  aspect-ratio: 1;
+  content: "";
+  background-color: var(--color-gray-light);
+  border-radius: inherit;
+  transition-duration: var(--transition-duration);
+}
+.radio-batton-tests-buttons-circle::before {
+  z-index: 1;
   border: 1px solid var(--color-blue-shadow);
   position: absolute;
   top: 50%;
@@ -1882,8 +1895,12 @@ form input[type=checkbox] {
   background-color: var(--color-accent);
   border-radius: inherit;
   transition-duration: var(--transition-duration);
+  transform: scale(0);
 }
 .radio-batton-tests-buttons-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   aspect-ratio: 1;
   transition: all 0.2s ease-out;
@@ -1898,6 +1915,9 @@ form input[type=checkbox] {
   color: var(--color-red);
 }
 .radio-batton-tests-plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   aspect-ratio: 1;
   transition: all 0.2s ease-out;
@@ -1934,4 +1954,8 @@ form input[type=checkbox] {
 .button-save-test:active {
   background-color: var(--color-blue-the-lightest);
   color: var(--color-blue-shadow);
+}
+
+.radio-batton-tests-buttons input[type=radio]:checked + .radio-batton-tests-buttons-circle::before {
+  transform: scale(1);
 }/*# sourceMappingURL=styles.css.map */

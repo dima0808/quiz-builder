@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   let questions = []; // Масив для зберігання питань та відповідей
+  let radioBtnCounter = 2; // Лічильник для унікальних id радіо кнопок
 
   // Додати обробник подій для кнопки "plus"
   document
@@ -22,12 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="radio-batton-tests-buttons">
             <input
               type="radio"
-              id="radio-button-test1"
+              id="radio-button-test${radioBtnCounter}"
               name="radio-buttons-test"
               class="visually-hidden"
             />
             <label
-              for="radio-button-test1"
+              for="radio-button-test${radioBtnCounter}"
               class="radio-batton-tests-buttons-circle"
             ></label>
 
@@ -51,8 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `;
 
+      // Збільшення лічильника для наступної радіо кнопки
+      radioBtnCounter++;
+
       // Додати новий елемент li до ol
-      document.querySelector(".radio-batton-tests-ol").appendChild(newLi);
+      document
+        .querySelector(".radio-batton-tests-ol")
+        .appendChild(newLi);
 
       // Додати обробник подій для кнопки "delete" на новоствореному елементі li
       newLi
@@ -63,13 +69,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+  // Додати обробник подій для кнопки "delete" на вже існуючих елементах li
+  document.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Видалити батьківський елемент li
+      button.closest("li").remove();
+    });
+  });
+
   // Додати обробник подій для кнопки "save"
   document
     .querySelector(".button-save-test")
     .addEventListener("click", function () {
-      let questionText = document.getElementById("test-question").value.trim(); // Отримати текст питання
+      let questionText = document
+        .getElementById("test-question")
+        .value.trim(); // Отримати текст питання
       let answerTexts = Array.from(
-        document.querySelectorAll(".radio-batton-tests-li-grid textarea")
+        document.querySelectorAll(
+          ".radio-batton-tests-li-grid textarea"
+        )
       ).map((textarea) => textarea.value.trim()); // Отримати всі тексти відповідей
 
       // Перевірка, чи є текст питання та хоча б одна відповідь непорожньою

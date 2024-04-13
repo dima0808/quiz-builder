@@ -1,12 +1,12 @@
 .build-test {
   &-choise {
     display: grid;
-    grid-template-columns: repeat(4, 150px);
+    grid-template-columns: repeat(4, 125px);
     gap: 20px;
   }
 
   &-img {
-    @include square(150px);
+    @include square(125px);
     display: block;
   }
 }

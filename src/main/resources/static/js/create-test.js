@@ -1,102 +1,48 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let questions = []; // Масив для зберігання питань та відповідей
-  let radioBtnCounter = 3; // Лічильник для унікальних id радіо кнопок
-
-  // Додати обробник подій для кнопки "plus"
-  document.querySelector(".radio-batton-tests-plus").addEventListener("click", function () {
-    // Створення нового елемента li
-    let newLi = document.createElement("li");
-    newLi.classList.add("radio-batton-tests-li");
-
-    // Заповнення елемента li необхідними елементами
-    newLi.innerHTML = `
-      <div class="radio-batton-tests-li-grid">
-        <textarea
-          class="before-creation-text question-area-text before-creation-text-blue"
-          id="test-answer"
-          name="test-question"
-          placeholder="Напишіть варіант відповіді"
-          required
-        ></textarea>
-        <div class="radio-batton-tests-buttons">
-          <input
-            type="radio"
-            id="radio-button-test${radioBtnCounter}"
-            name="radio-buttons-test"
-            class="visually-hidden"
-          />
-          <label
-            for="radio-button-test${radioBtnCounter}"
-            class="radio-batton-tests-buttons-circle"
-          ></label>
-          <button class="radio-batton-tests-buttons-delete">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    `;
-
-    // Збільшення лічильника для наступної радіо кнопки
-    radioBtnCounter++;
-
-    // Додати новий елемент li до ol
-    document.querySelector(".radio-batton-tests-ol").appendChild(newLi);
-
-    // Додати обробник подій для кнопки "delete" на новоствореному елементі li
-    newLi.querySelector(".radio-batton-tests-buttons-delete").addEventListener("click", function () {
-      // Видалити батьківський елемент li
-      newLi.remove();
-    });
+  document.querySelector(".button-add-test").click();
   });
 
-  document.querySelector(".button-add-test").addEventListener("click", function() {
-    // Створення нового елемента li new-test-li
-    let newLiTest = document.createElement("li");
-    newLiTest.classList.add("new-test-li", "before-creation-h2", "before-creation-h1-blue");
-    // Заповнення елемента li необхідними елементами
-    newLiTest.innerHTML = `
+let questions = []; // Масив для зберігання питань та відповідей
+let questionCounter = 0
+document.querySelector(".button-add-test").addEventListener("click", function() {
+  // Створення нового елемента li new-test-li
+  let newLiTest = document.createElement("li");
+  newLiTest.classList.add("new-test-li", "before-creation-h2", "before-creation-h1-blue");
+  // Заповнення елемента li необхідними елементами
+
+  let answerInnerCounter = 1
+  questionCounter++
+
+  newLiTest.innerHTML = `
       Оберіть вид тесту:
       <div class="build-test">
         <div class="build-test-choise">
           <input
             type="radio"
-            id="radio1"
-            name="radios-choise"
+            id="radio-${questionCounter}-1"
+            name="radios-choise-${questionCounter}"
             value="1"
             checked
           />
-          <label for="radio1"><img class="build-test-img" src="" /></label>
+          <label for="radio-${questionCounter}-1"><img class="build-test-img" src="" /></label>
 
           <input
             type="radio"
-            id="radio2"
-            name="radios-choise"
+            id="radio-${questionCounter}-2"
+            name="radios-choise-${questionCounter}"
             value="2"
           />
-          <label for="radio2"><img class="build-test-img" src="" /></label>
+          <label for="radio-${questionCounter}-2"><img class="build-test-img" src="" /></label>
         </div>
       </div>
       <div class="question-area">
         <label
-          for="test-question"
+          for="test-question-${questionCounter}"
           class="question-area-label before-creation-text-blue before-creation-h2 before-creation-h1-blue"
         >Заповніть всі комірки</label>
         <textarea
           class="before-creation-text question-area-text before-creation-text-blue"
-          id="test-question"
+          id="test-question-${questionCounter}"
           name="test-question"
           placeholder="Напишіть питання"
           required
@@ -108,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="radio-batton-tests-li-grid">
               <textarea
                 class="before-creation-text question-area-text before-creation-text-blue"
-                id="test-answer"
+                id="test-answer-${questionCounter}-${answerInnerCounter}"
                 name="test-question"
                 placeholder="Напишіть варіант відповіді"
                 required
@@ -116,15 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="radio-batton-tests-buttons">
                 <input
                   type="radio"
-                  id="radio-button-test1"
-                  name="radio-buttons-test"
+                  id="radio-button-test-${questionCounter}-${answerInnerCounter}"
+                  name="radio-buttons-test-${questionCounter}"
                   class="visually-hidden"
                 />
                 <label
-                  for="radio-button-test1"
+                  for="radio-button-test-${questionCounter}-${answerInnerCounter}"
                   class="radio-batton-tests-buttons-circle"
                 ></label>
-                <button class="radio-batton-tests-buttons-delete">
+                <button class="radio-batton-tests-buttons-delete"> 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -147,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="radio-batton-tests-li-grid">
               <textarea
                 class="before-creation-text question-area-text before-creation-text-blue"
-                id="test-answer"
+                id="test-answer-${questionCounter}-${answerInnerCounter++}"
                 name="test-question"
                 placeholder="Напишіть варіант відповіді"
                 required
@@ -155,12 +101,12 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="radio-batton-tests-buttons">
                 <input
                   type="radio"
-                  id="radio-button-test2"
-                  name="radio-buttons-test"
+                  id="radio-button-test-${questionCounter}-${answerInnerCounter}"
+                  name="radio-buttons-test-${questionCounter}"
                   class="visually-hidden"
                 />
                 <label
-                  for="radio-button-test2"
+                  for="radio-button-test-${questionCounter}-${answerInnerCounter}"
                   class="radio-batton-tests-buttons-circle"
                 ></label>
                 <button class="radio-batton-tests-buttons-delete">
@@ -184,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </li>
         </ol>
         <div class="buttons-flex">
-          <button class="radio-batton-tests-plus">
+          <button class="radio-batton-tests-plus" id="add-answer-${questionCounter}">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -219,29 +165,28 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
     `;
-    // Додати новий елемент li до ol
-    document.querySelector(".new-test-ol").appendChild(newLiTest);
+  // Додати новий елемент li до ol
+  document.querySelector(".new-test-ol").appendChild(newLiTest);
 
-    // Додати обробник подій для кнопки "delete" на вже існуючих елементах li
-    newLiTest.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
-      button.addEventListener("click", function () {
-        // Видалити батьківський елемент li
-        button.closest("li").remove();
-      });
+  // Додати обробник подій для кнопки "delete" на вже існуючих елементах li
+  newLiTest.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Видалити батьківський елемент li
+      button.closest("li").remove();
     });
+  });
 
-    // Додати обробник подій для кнопки "plus" всередині нового тесту
-    newLiTest.querySelector(".radio-batton-tests-plus").addEventListener("click", function () {
-      // Створення нового елемента li
-      let newLi = document.createElement("li");
-      newLi.classList.add("radio-batton-tests-li");
+  newLiTest.querySelector(".radio-batton-tests-plus").addEventListener("click", function () {
+    let localQuestionCounter = this.id.split('-')[2];
+    let newLiAnswer = document.createElement("li");
+    newLiAnswer.classList.add("radio-batton-tests-li");
 
-      // Заповнення елемента li необхідними елементами
-      newLi.innerHTML = `
+    // Заповнення елемента li необхідними елементами
+    newLiAnswer.innerHTML = `
         <div class="radio-batton-tests-li-grid">
           <textarea
             class="before-creation-text question-area-text before-creation-text-blue"
-            id="test-answer"
+            id="test-answer-${localQuestionCounter}-${answerInnerCounter++}"
             name="test-question"
             placeholder="Напишіть варіант відповіді"
             required
@@ -249,12 +194,12 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="radio-batton-tests-buttons">
             <input
               type="radio"
-              id="radio-button-test${radioBtnCounter}"
-              name="radio-buttons-test"
+              id="radio-button-test-${localQuestionCounter}-${answerInnerCounter}"
+              name="radio-buttons-test-${localQuestionCounter}"
               class="visually-hidden"
             />
             <label
-              for="radio-button-test${radioBtnCounter}"
+              for="radio-button-test-${localQuestionCounter}-${answerInnerCounter}"
               class="radio-batton-tests-buttons-circle"
             ></label>
             <button class="radio-batton-tests-buttons-delete">
@@ -277,27 +222,23 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `;
 
-      // Збільшення лічильника для наступної радіо кнопки
-      radioBtnCounter++;
+    // Додати новий елемент li до ol
+    newLiTest.querySelector(".radio-batton-tests-ol").appendChild(newLiAnswer);
 
-      // Додати новий елемент li до ol
-      newLiTest.querySelector(".radio-batton-tests-ol").appendChild(newLi);
-
-      // Додати обробник подій для кнопки "delete" на новоствореному елементі li
-      newLi.querySelector(".radio-batton-tests-buttons-delete").addEventListener("click", function () {
-        // Видалити батьківський елемент li
-        newLi.remove();
-      });
-    });
-  });
-
-  // Додати обробник подій для кнопки "delete" на вже існуючих елементах li
-  document.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
-    button.addEventListener("click", function () {
+    // Додати обробник подій для кнопки "delete" на новоствореному елементі li
+    newLiAnswer.querySelector(".radio-batton-tests-buttons-delete").addEventListener("click", function () {
       // Видалити батьківський елемент li
-      button.closest("li").remove();
+      newLiAnswer.remove();
     });
   });
+
+
+
+
+
+
+
+
 
   // Додати обробник подій для кнопки "save"
   document.querySelector(".button-save-test").addEventListener("click", function () {

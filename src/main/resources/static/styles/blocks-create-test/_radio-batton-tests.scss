@@ -1,18 +1,21 @@
 .radio-batton-tests {
   &-ol {
-    padding-left: 20px;
+    font-size: 28px;
+    padding-left: 45px;
     list-style-type: lower-alpha;
   }
 
   &-li {
     display: list-item;
-
+    list-style-position: outside;
     &-grid {
       display: grid;
       grid-template-columns: auto 120px;
+      margin-left: 5px;
       gap: 10%;
     }
   }
+
   &-li:not(:last-child) {
     margin-bottom: 12px;
   }
@@ -99,7 +102,10 @@
   justify-content: space-between;
   margin: 15px 0 10px 0;
 }
-.button-save-test {
+.button-add-test {
+  margin-right: 18px;
+}
+.button-rectangle-test {
   width: 150px;
   height: 50px;
   @include transition-out();
@@ -110,10 +116,14 @@
   line-height: 1.1;
   cursor: pointer;
 }
-.button-save-test:hover,
-.button-save-test:active {
+.button-rectangle-test:hover,
+.button-rectangle-test:active {
   background-color: var(--color-blue-the-lightest);
   color: var(--color-blue-shadow);
+}
+.flex-end-button {
+  display: flex;
+  justify-content: end;
 }
 .radio-batton-tests-buttons
   input[type="radio"]:checked

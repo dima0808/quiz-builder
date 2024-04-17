@@ -592,38 +592,90 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
       // Видалити батьківський елемент li
       newLiAnswer.remove();
     });
-  });
-
-
-
-  // Додати обробник подій для кнопки "save"
-  document.querySelector(".button-save-test").addEventListener("click", function () {
-    let questionText = document.getElementById("test-question").value.trim(); // Отримати текст питання
-    let answerTexts = Array.from(document.querySelectorAll(".radio-batton-tests-li-grid textarea")).map((textarea) => textarea.value.trim()); // Отримати всі тексти відповідей
-
-    // Перевірка, чи є текст питання та хоча б одна відповідь непорожньою
-    if (questionText !== "" && answerTexts.some((answer) => answer !== "")) {
-      // Створення об'єкта для питання
-      let question = {
-        text: questionText,
-        answers: answerTexts.map((answerText) => ({ text: answerText })),
-      };
-
-      // Додати інформацію про питання до масиву
-      questions.push(question);
-
-      // Очистити поля
-      document.getElementById("test-question").value = "";
-      document.querySelectorAll(".radio-batton-tests-li-grid textarea").forEach((textarea) => (textarea.value = ""));
-
-      // Оновити список питань та відповідей
-      updateQuestionList();
-    }
-  });
-
-  // Функція для оновлення списку питань та відповідей
-  function updateQuestionList() {
-    // Виведення масиву з питаннями та відповідями у консоль
-    console.log(questions);
-  }
+  });  
 });
+
+document.querySelector('.button-save-test').addEventListener('click', function() {
+  // отримання даних тесту
+  let author = document.querySelector('.header__user-name').textContent.trim();
+  let name = document.getElementById('course-name').value.trim();
+  let description = document.getElementById('course-description').value.trim();
+  let topic = document.querySelector('.dropdown__button').textContent.trim();
+
+  let test = {
+      author: author,
+      name: name,
+      description: description,
+      topic: topic,
+      questions: []
+  };
+
+  let questionAreas = document.querySelectorAll('.question-area');
+  questionAreas.forEach((questionArea, questionIndex) => {
+      let questionText = questionArea.querySelector('textarea').value.trim();
+      let testTypeRadios = questionArea.parentNode.querySelector('.build-test-choise').querySelectorAll('input[type="radio"]');
+      let testType;
+      testTypeRadios.forEach(radio => {
+          if (radio.checked) {
+              testType = radio.value;
+          }
+      });
+
+      let answers = [];
+      let answerTextareas = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li textarea');
+      let answerCheckboxes = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li input[type="checkbox"]');
+      
+      if (answerTextareas.length > 0 && answerCheckboxes.length > 0) {
+          answerTextareas.forEach((answerTextarea, answerIndex) => {
+              let answerText = answerTextarea.value.trim();
+              let isCorrect = answerCheckboxes[answerIndex] && answerCheckboxes[answerIndex].checked;
+              answers.push({
+                  text: answerText,
+                  isCorrect: isCorrect
+              });
+          });
+      } else if (testType === "1") {
+          let answerRadios = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li input[type="radio"]');
+          answerRadios.forEach((answerRadio, answerIndex) => {
+              let isCorrect = answerRadio.checked;
+              let answerText = answerTextareas[answerIndex].value.trim();
+              answers.push({
+                  text: answerText,
+                  isCorrect: isCorrect
+              });
+          });
+      }
+
+      test.questions.push({
+          text: questionText,
+          type: testType,
+          answers: answers
+      });
+  });
+
+  // відправка даних на сервер
+  fetch('/api/test/create', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(test)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log('Server response:', data);
+      // перенаправлення на головну сторінку після успішного збереження
+      window.location.href = '/';
+  })
+  .catch(error => {
+      console.error('There was a problem with your fetch operation:', error);
+      // відповідний обробник подій для помилки
+  });
+});
+
+

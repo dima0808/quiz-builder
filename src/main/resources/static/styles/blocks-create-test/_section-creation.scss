@@ -1,5 +1,5 @@
 .section-creation {
-  padding: 20px 48px;
+  padding: 20px 72px;
   margin-bottom: 90px;
 
   background-color: var(--color-blue-lighter);
@@ -7,4 +7,12 @@
 }
 .question-area {
   margin-bottom: 15px;
+}
+.section-creation label:hover,
+.section-creation label:focus,
+.section-creation textarea:hover,
+.section-creation textarea:active,
+.section-creation textarea:focus,
+.section-creation button:hover {
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
 }

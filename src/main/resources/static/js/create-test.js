@@ -1,19 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".button-add-test").click();
-  });
+});
 
 let questions = []; // Масив для зберігання питань та відповідей
-let questionCounter = 0
-document.querySelector(".button-add-test").addEventListener("click", function() {
-  // Створення нового елемента li new-test-li
-  let newLiTest = document.createElement("li");
-  newLiTest.classList.add("new-test-li", "before-creation-h2", "before-creation-h1-blue");
-  // Заповнення елемента li необхідними елементами
+let questionCounter = 0;
+document
+  .querySelector(".button-add-test")
+  .addEventListener("click", function () {
+    // Створення нового елемента li new-test-li
+    let newLiTest = document.createElement("li");
+    newLiTest.classList.add(
+      "new-test-li",
+      "before-creation-h2",
+      "before-creation-h1-blue"
+    );
+    // Заповнення елемента li необхідними елементами
 
-  let answerInnerCounter = 1
-  questionCounter++
+    let answerInnerCounter = 1;
+    questionCounter++;
 
-  newLiTest.innerHTML = `
+    newLiTest.innerHTML = `
       Оберіть вид тесту:
       <div class="build-test">
         <div class="build-test-choise">
@@ -24,7 +30,7 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
             value="1"
             checked
           />
-          <label for="radio-${questionCounter}-1"><img class="build-test-img" src="" /></label>
+          <label for="radio-${questionCounter}-1"><img class="build-test-img" src="/images/radio-button-icon.png" /></label>
 
           <input
             type="radio"
@@ -32,7 +38,7 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
             name="radios-choise-${questionCounter}"
             value="2"
           />
-          <label for="radio-${questionCounter}-2"><img class="build-test-img" src="" /></label>
+          <label for="radio-${questionCounter}-2"><img class="build-test-img" src="/images/checkbox-icon.png" /></label>
         </div>
       </div>
       <div class="question-area">
@@ -167,16 +173,21 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
             </div>
       </div>
     `;
-  // Додати новий елемент li до ol
-  document.querySelector(".new-test-ol").appendChild(newLiTest);
+    // Додати новий елемент li до ol
+    document.querySelector(".new-test-ol").appendChild(newLiTest);
 
-  let typeRadios = document.getElementsByName("radios-choise-" + questionCounter);
-  typeRadios.forEach(typeRadio => typeRadio.addEventListener("change", function () {
-    let localQuestionCounter = this.id.split("-")[1];
-    let questionDiv = document.getElementById("question-block-" + localQuestionCounter);
-    switch (this.value) {
-      case "1":
-        questionDiv.innerHTML = `
+    let typeRadios = document.getElementsByName(
+      "radios-choise-" + questionCounter
+    );
+    typeRadios.forEach((typeRadio) =>
+      typeRadio.addEventListener("change", function () {
+        let localQuestionCounter = this.id.split("-")[1];
+        let questionDiv = document.getElementById(
+          "question-block-" + localQuestionCounter
+        );
+        switch (this.value) {
+          case "1":
+            questionDiv.innerHTML = `
             <div class="radio-batton-tests">
               <ol class="radio-batton-tests-ol before-creation-text-blue">
                 <li class="radio-batton-tests-li">
@@ -294,9 +305,9 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
               </div>
             </div>
         `;
-        break;
-      case "2":
-        questionDiv.innerHTML = `
+            break;
+          case "2":
+            questionDiv.innerHTML = `
             <div class="checkbox-tests">
               <ol class="radio-batton-tests-ol before-creation-text-blue">
                 <li class="radio-batton-tests-li">
@@ -418,26 +429,32 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
               </div>
             </div>
         `;
-        break;
-    }
-    // Видалення відповідей/тесту
-    questionDiv.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
-      button.addEventListener("click", function () {
-        button.closest("li").remove();
-      });
-    });
+            break;
+        }
+        // Видалення відповідей/тесту
+        questionDiv
+          .querySelectorAll(".radio-batton-tests-buttons-delete")
+          .forEach(function (button) {
+            button.addEventListener("click", function () {
+              button.closest("li").remove();
+            });
+          });
 
-    // Добавити нову відповідь
-    questionDiv.querySelectorAll(".radio-batton-tests-plus").forEach(function (button) {
-      button.addEventListener("click", function () {
-        let localQuestionCounter = button.id.split('-')[2];
-        let selectedValue = document.querySelector(`input[name="radios-choise-${localQuestionCounter}"]:checked`).value;
-        let newLiAnswer = document.createElement("li");
-        newLiAnswer.classList.add("radio-batton-tests-li");
-        // Заповнення елемента li необхідними елементами
-        switch (selectedValue) {
-          case "1":
-            newLiAnswer.innerHTML = `
+        // Добавити нову відповідь
+        questionDiv
+          .querySelectorAll(".radio-batton-tests-plus")
+          .forEach(function (button) {
+            button.addEventListener("click", function () {
+              let localQuestionCounter = button.id.split("-")[2];
+              let selectedValue = document.querySelector(
+                `input[name="radios-choise-${localQuestionCounter}"]:checked`
+              ).value;
+              let newLiAnswer = document.createElement("li");
+              newLiAnswer.classList.add("radio-batton-tests-li");
+              // Заповнення елемента li необхідними елементами
+              switch (selectedValue) {
+                case "1":
+                  newLiAnswer.innerHTML = `
           <div class="radio-batton-tests-li-grid">
             <textarea
               class="before-creation-text question-area-text before-creation-text-blue"
@@ -476,9 +493,9 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
             </div>
           </div>
           `;
-            break;
-          case "2":
-            newLiAnswer.innerHTML = `
+                  break;
+                case "2":
+                  newLiAnswer.innerHTML = `
           <div class="radio-batton-tests-li-grid">
             <textarea
               class="before-creation-text question-area-text before-creation-text-blue"
@@ -517,34 +534,43 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
             </div>
           </div>
           `;
-            break;
-        }
-        // Додати новий елемент li до ol
-        newLiTest.querySelector(".radio-batton-tests-ol").appendChild(newLiAnswer);
+                  break;
+              }
+              // Додати новий елемент li до ol
+              newLiTest
+                .querySelector(".radio-batton-tests-ol")
+                .appendChild(newLiAnswer);
 
-        // Додати обробник подій для кнопки "delete" на новоствореному елементі li
-        newLiAnswer.querySelector(".radio-batton-tests-buttons-delete").addEventListener("click", function () {
+              // Додати обробник подій для кнопки "delete" на новоствореному елементі li
+              newLiAnswer
+                .querySelector(".radio-batton-tests-buttons-delete")
+                .addEventListener("click", function () {
+                  // Видалити батьківський елемент li
+                  newLiAnswer.remove();
+                });
+            });
+          });
+      })
+    );
+
+    newLiTest
+      .querySelectorAll(".radio-batton-tests-buttons-delete")
+      .forEach(function (button) {
+        button.addEventListener("click", function () {
           // Видалити батьківський елемент li
-          newLiAnswer.remove();
+          button.closest("li").remove();
         });
       });
-    })
-  }))
 
-  newLiTest.querySelectorAll(".radio-batton-tests-buttons-delete").forEach(function (button) {
-    button.addEventListener("click", function () {
-      // Видалити батьківський елемент li
-      button.closest("li").remove();
-    });
-  });
+    newLiTest
+      .querySelector(".radio-batton-tests-plus")
+      .addEventListener("click", function () {
+        let localQuestionCounter = this.id.split("-")[2];
+        let newLiAnswer = document.createElement("li");
+        newLiAnswer.classList.add("radio-batton-tests-li");
 
-  newLiTest.querySelector(".radio-batton-tests-plus").addEventListener("click", function () {
-    let localQuestionCounter = this.id.split('-')[2];
-    let newLiAnswer = document.createElement("li");
-    newLiAnswer.classList.add("radio-batton-tests-li");
-
-    // Заповнення елемента li необхідними елементами
-    newLiAnswer.innerHTML = `
+        // Заповнення елемента li необхідними елементами
+        newLiAnswer.innerHTML = `
         <div class="radio-batton-tests-li-grid">
           <textarea
             class="before-creation-text question-area-text before-creation-text-blue"
@@ -584,98 +610,116 @@ document.querySelector(".button-add-test").addEventListener("click", function() 
         </div>
       `;
 
-    // Додати новий елемент li до ol
-    newLiTest.querySelector(".radio-batton-tests-ol").appendChild(newLiAnswer);
+        // Додати новий елемент li до ol
+        newLiTest
+          .querySelector(".radio-batton-tests-ol")
+          .appendChild(newLiAnswer);
 
-    // Додати обробник подій для кнопки "delete" на новоствореному елементі li
-    newLiAnswer.querySelector(".radio-batton-tests-buttons-delete").addEventListener("click", function () {
-      // Видалити батьківський елемент li
-      newLiAnswer.remove();
-    });
-  });  
-});
+        // Додати обробник подій для кнопки "delete" на новоствореному елементі li
+        newLiAnswer
+          .querySelector(".radio-batton-tests-buttons-delete")
+          .addEventListener("click", function () {
+            // Видалити батьківський елемент li
+            newLiAnswer.remove();
+          });
+      });
+  });
 
-document.querySelector('.button-save-test').addEventListener('click', function() {
-  // отримання даних тесту
-  let author = document.querySelector('.header__user-name').textContent.trim();
-  let name = document.getElementById('course-name').value.trim();
-  let description = document.getElementById('course-description').value.trim();
-  let topic = document.querySelector('.dropdown__button').textContent.trim();
+document
+  .querySelector(".button-save-test")
+  .addEventListener("click", function () {
+    // отримання даних тесту
+    let author = document
+      .querySelector(".header__user-name")
+      .textContent.trim();
+    let name = document.getElementById("course-name").value.trim();
+    let description = document
+      .getElementById("course-description")
+      .value.trim();
+    let topic = document.querySelector(".dropdown__button").textContent.trim();
 
-  let test = {
+    let test = {
       author: author,
       name: name,
       description: description,
       topic: topic,
-      questions: []
-  };
+      questions: [],
+    };
 
-  let questionAreas = document.querySelectorAll('.question-area');
-  questionAreas.forEach((questionArea, questionIndex) => {
-      let questionText = questionArea.querySelector('textarea').value.trim();
-      let testTypeRadios = questionArea.parentNode.querySelector('.build-test-choise').querySelectorAll('input[type="radio"]');
+    let questionAreas = document.querySelectorAll(".question-area");
+    questionAreas.forEach((questionArea, questionIndex) => {
+      let questionText = questionArea.querySelector("textarea").value.trim();
+      let testTypeRadios = questionArea.parentNode
+        .querySelector(".build-test-choise")
+        .querySelectorAll('input[type="radio"]');
       let testType;
-      testTypeRadios.forEach(radio => {
-          if (radio.checked) {
-              testType = radio.value;
-          }
+      testTypeRadios.forEach((radio) => {
+        if (radio.checked) {
+          testType = radio.value;
+        }
       });
 
       let answers = [];
-      let answerTextareas = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li textarea');
-      let answerCheckboxes = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li input[type="checkbox"]');
-      
+      let answerTextareas = questionArea.parentNode.querySelectorAll(
+        ".radio-batton-tests-li textarea"
+      );
+      let answerCheckboxes = questionArea.parentNode.querySelectorAll(
+        '.radio-batton-tests-li input[type="checkbox"]'
+      );
+
       if (answerTextareas.length > 0 && answerCheckboxes.length > 0) {
-          answerTextareas.forEach((answerTextarea, answerIndex) => {
-              let answerText = answerTextarea.value.trim();
-              let isCorrect = answerCheckboxes[answerIndex] && answerCheckboxes[answerIndex].checked;
-              answers.push({
-                  text: answerText,
-                  isCorrect: isCorrect
-              });
+        answerTextareas.forEach((answerTextarea, answerIndex) => {
+          let answerText = answerTextarea.value.trim();
+          let isCorrect =
+            answerCheckboxes[answerIndex] &&
+            answerCheckboxes[answerIndex].checked;
+          answers.push({
+            text: answerText,
+            isCorrect: isCorrect,
           });
+        });
       } else if (testType === "1") {
-          let answerRadios = questionArea.parentNode.querySelectorAll('.radio-batton-tests-li input[type="radio"]');
-          answerRadios.forEach((answerRadio, answerIndex) => {
-              let isCorrect = answerRadio.checked;
-              let answerText = answerTextareas[answerIndex].value.trim();
-              answers.push({
-                  text: answerText,
-                  isCorrect: isCorrect
-              });
+        let answerRadios = questionArea.parentNode.querySelectorAll(
+          '.radio-batton-tests-li input[type="radio"]'
+        );
+        answerRadios.forEach((answerRadio, answerIndex) => {
+          let isCorrect = answerRadio.checked;
+          let answerText = answerTextareas[answerIndex].value.trim();
+          answers.push({
+            text: answerText,
+            isCorrect: isCorrect,
           });
+        });
       }
 
       test.questions.push({
-          text: questionText,
-          type: testType,
-          answers: answers
+        text: questionText,
+        type: testType,
+        answers: answers,
+      });
+    });
+
+    // відправка даних на сервер
+    fetch("/api/test/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(test),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Server response:", data);
+        // перенаправлення на головну сторінку після успішного збереження
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+        // відповідний обробник подій для помилки
       });
   });
-
-  // відправка даних на сервер
-  fetch('/api/test/create', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(test)
-  })
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.json();
-  })
-  .then(data => {
-      console.log('Server response:', data);
-      // перенаправлення на головну сторінку після успішного збереження
-      window.location.href = '/';
-  })
-  .catch(error => {
-      console.error('There was a problem with your fetch operation:', error);
-      // відповідний обробник подій для помилки
-  });
-});
-
-

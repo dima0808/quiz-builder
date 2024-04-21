@@ -28,7 +28,7 @@
     &--active,
     &:hover {
       outline: none;
-      box-shadow: 0px 0px 0px 4px rgba(176, 198, 225, 0.6);
+
       border: 1px solid var(--color-blue);
     }
 
@@ -57,7 +57,7 @@
     top: 52px;
 
     background-color: var(--color-light);
-    box-shadow: 0px 4px 8px rgba(176, 198, 225, 0.6);
+
     overflow: hidden;
 
     border-radius: var(--border-radius-small);

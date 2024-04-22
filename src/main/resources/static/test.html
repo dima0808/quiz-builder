@@ -18,13 +18,13 @@
         <nav class="header__menu hidden-desktop">
           <ul class="header__menu-list">
             <li class="header__menu-item">
-              <a href="" class="header__menu-link">Головна</a>
+              <a href="./index.html" class="header__menu-link">Головна</a>
             </li>
             <li class="header__menu-item">
               <a href="./test.html" class="header__menu-link">Тести</a>
             </li>
             <li class="header__menu-item">
-              <a href="" class="header__menu-link">Інформація</a>
+              <a href="./create-test.html" class="header__menu-link">Інформація</a>
             </li>
             <li class="header__menu-item">
               <a href="#contact-us" class="header__menu-link">Зв'язок</a>
@@ -65,64 +65,17 @@
     </header>
 
     <main>
-      <section class="section container before-creation">
-        <div class="before-start">
-          <h2 class="before-creation-h1">Створіть свій ідеальний тест:</h2>
-          <div class="contact-us__field field">
-            <textarea
-              class="before-creation-text"
-              id="course-name"
-              name="course-name"
-              placeholder="Назва навчального тесту"
-              required
-            ></textarea>
-            <textarea
-              class="before-creation-text before-creation-text-description"
-              id="course-description"
-              name="course-description"
-              placeholder="Опис, деталі, додаткові дані тесту"
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-group">
-            <div class="dropdown">
-              <button class="dropdown__button">Виберіть тематику:</button>
-              <ul class="dropdown__list">
-                <li class="dropdown__list-item" data-value="work">
-                  Навчання
-                </li>
-                <li class="dropdown__list-item" data-value="question">
-                  Опитування
-                </li>
-                <li class="dropdown__list-item" data-value="quize">
-                  Квізи
-                </li>
-              </ul>
-              <input
-                type="text"
-                name="select-category"
-                value=""
-                class="dropdown__input-hidden"
-              />
+        <section class="section container">
+            <div class="section__body">
+              <div class="search">
+                <input id="search-test" placeholder="Пошук тесту" type="text">
+              </div>
+              <div class="search-result">
+                <ul class="search-result__list" id="test-list">
+                    
+                </ul>
             </div>
-          </div>
-        </div>
-        <div class="before-content"></div>
-      </section>
-      <section class="container section-creation">
-        <ol class="new-test-ol">
-
-        </ol>
-        <div class="flex-end-button">
-          <button class="button-rectangle-test button-add-test">
-            Додати запитання
-          </button>
-          <button class="button-rectangle-test button-save-test">
-            Зберегти тестування
-          </button>
-        </div>
-      </section>
+        </section>
     </main>
 
     <dialog class="mobile-overlay visible-desktop" id="mobileOverlay">
@@ -173,8 +126,7 @@
     </dialog>
 
     <script src="js/header-visible.js"></script>
-    <script src="js/dropdown.js"></script>
-    <script src="js/create-test.js"></script>
     <script src="js/username.js"></script>
+    <script src="js/test-list.js"></script>
   </body>
 </html>

@@ -1,0 +1,15 @@
+.search {
+    margin-top: 40px;
+    width: 100%;
+    @include flex-center(true);
+
+    &-result {
+        margin-top: 20px;
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            
+        }
+    }
+}

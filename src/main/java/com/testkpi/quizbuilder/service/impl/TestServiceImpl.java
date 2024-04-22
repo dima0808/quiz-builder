@@ -7,6 +7,8 @@ import com.testkpi.quizbuilder.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TestServiceImpl implements TestService {
 
@@ -28,5 +30,10 @@ public class TestServiceImpl implements TestService {
 
         testRepository.save(test);
         return test;
+    }
+
+    @Override
+    public List<Test> findAllTests() {
+        return testRepository.findAll();
     }
 }

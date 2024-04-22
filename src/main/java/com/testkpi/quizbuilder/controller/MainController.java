@@ -20,7 +20,7 @@ public class MainController {
         return new ResponseEntity<>(pageResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
     public String getAdminPanel() {
         return "some admin things";

@@ -36,4 +36,9 @@ public class TestServiceImpl implements TestService {
     public List<Test> findAllTests() {
         return testRepository.findAll();
     }
+
+    @Override
+    public void deleteAllTests() {
+        testRepository.deleteAll();
+    }
 }

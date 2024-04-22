@@ -30,7 +30,7 @@ document
             value="1"
             checked
           />
-          <label for="radio-${questionCounter}-1"><img class="build-test-img" src="/images/radio-button-icon.png" /></label>
+          <label for="radio-${questionCounter}-1"><img class="build-test-img" src="/images/radio-button-icon.png"  alt="одна відповідь"/></label>
 
           <input
             type="radio"
@@ -38,7 +38,7 @@ document
             name="radios-choise-${questionCounter}"
             value="2"
           />
-          <label for="radio-${questionCounter}-2"><img class="build-test-img" src="/images/checkbox-icon.png" /></label>
+          <label for="radio-${questionCounter}-2"><img class="build-test-img" src="/images/checkbox-icon.png"  alt="декілька відповідей"/></label>
         </div>
       </div>
       <div class="question-area">

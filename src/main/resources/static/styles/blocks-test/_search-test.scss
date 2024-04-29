@@ -1,7 +1,35 @@
 .search {
+    position: relative;
     margin-top: 40px;
     width: 100%;
     @include flex-center(true);
+
+    &-list {
+        position: absolute;
+        width: 100%;
+        padding: 0px 8px;
+        background-color: var(--color-light);
+        top: 60px;
+        border-radius: 5px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+
+        & li {
+            padding: 8px 12px;
+            border-radius: 3px;
+
+            &:first-child {
+                margin-top: 8px;
+            }
+
+            &:last-child {
+                margin-bottom: 8px;
+            }
+
+            @include hover {
+                background-color: var(--color-gray);
+            }
+        }
+    }
 
     &-result {
         margin-top: 20px;
@@ -10,6 +38,32 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             
+        }
+    }
+    &__input {
+        height: 55px;
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        padding: 0 60px 0 20px;
+        font-size: 18px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+    &__icon {
+        height: 55px;
+        width: 55px;
+        line-height: 55px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        
+        @include flex-center(false);
+
+        & svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-blue);
         }
     }
 }

@@ -71,6 +71,14 @@ function searchTests(event) {
             return test.name.toLowerCase().includes(searchText) || test.description.toLowerCase().includes(searchText);
         });
 
+        // Фільтрація за темою
+        let selectedTopic = document.querySelector('input[name="topic"]:checked').value;
+        if (selectedTopic !== 'all') {
+            filteredTests = filteredTests.filter(function(test) {
+                return test.topic === selectedTopic;
+            });
+        }
+
         // Відображення тестів на сторінці
         displayTests(filteredTests);
 
@@ -156,3 +164,29 @@ function handleListItemClick(event) {
 
 // Додаємо обробник події для вибору теми зі списку
 document.querySelector(".search-list").addEventListener("click", handleListItemClick);
+
+// Функція для обробки подій вибору типу тесту та пошуку
+function handleFilterChange() {
+    let selectedFilter = document.querySelector('input[name="topic"]:checked').value;
+    let searchText = document.getElementById("search-test").value.trim().toLowerCase();
+    
+    // Отримання відповідних тестів
+    let filteredTests = window.allTests.filter(function(test) {
+        return test.name.toLowerCase().includes(searchText) || test.description.toLowerCase().includes(searchText);
+    });
+
+    // Фільтрація за темою
+    if (selectedFilter !== 'all') {
+        filteredTests = filteredTests.filter(function(test) {
+            return test.topic === selectedFilter;
+        });
+    }
+
+    // Відображення відфільтрованих тестів на сторінці
+    displayTests(filteredTests);
+}
+
+// Додаємо обробник подій для радіо кнопок
+document.querySelectorAll('input[name="topic"]').forEach(function(radio) {
+    radio.addEventListener('change', handleFilterChange);
+});

@@ -1,7 +1,7 @@
-const username = document.querySelector('.header__user-name')
-const divSignBtn = document.querySelector('.header__link')
-const divUser = document.querySelector('.header__user')
-const divContactBlocked = document.querySelector('.contact-us__blocked')
+const usernames = document.querySelectorAll('.header__user-name');
+const divSignBtns = document.querySelectorAll('.header__link');
+const divUsers = document.querySelectorAll('.header__user');
+const divContactBlockeds = document.querySelectorAll('.contact-us__blocked');
 
 async function getUsername() {
     const response = await fetch('/api/home', {
@@ -12,16 +12,32 @@ async function getUsername() {
       });
     
     response.json().then(user => {
-        if (user.username !== "anonymousUser") {
-            username.innerHTML = user.username
-            divSignBtn.classList.add('visually-hidden')
-            divUser.classList.remove('visually-hidden')
-            divContactBlocked.classList.add('visually-hidden')
-        } else {
-            divSignBtn.classList.remove('visually-hidden')
-            divUser.classList.add('visually-hidden')
-        }
-    })
+        const isAnonymous = user.username === "anonymousUser";
+        usernames.forEach(username => {
+            username.innerHTML = isAnonymous ? '' : user.username;
+        });
+        divSignBtns.forEach(divSignBtn => {
+            if (isAnonymous) {
+                divSignBtn.classList.remove('visually-hidden');
+            } else {
+                divSignBtn.classList.add('visually-hidden');
+            }
+        });
+        divUsers.forEach(divUser => {
+            if (isAnonymous) {
+                divUser.classList.add('visually-hidden');
+            } else {
+                divUser.classList.remove('visually-hidden');
+            }
+        });
+        divContactBlockeds.forEach(divContactBlocked => {
+            if (isAnonymous) {
+                divContactBlocked.classList.remove('visually-hidden');
+            } else {
+                divContactBlocked.classList.add('visually-hidden');
+            }
+        });
+    });
 }
 
-getUsername()
+getUsername();

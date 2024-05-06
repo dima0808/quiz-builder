@@ -10,4 +10,6 @@ public interface TestService {
     Test saveTest(TestDto testDto);
 
     List<Test> findAllTests();
+
+    void deleteAllTests();
 }

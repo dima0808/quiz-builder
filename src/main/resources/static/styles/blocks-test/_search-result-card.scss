@@ -1,0 +1,43 @@
+.search-result-card {
+    min-height: 300px;
+    padding: 30px;
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+
+    @include tablet {
+        width: 100%;
+        max-width: 400px;
+        min-height: auto;
+    }
+
+    &__header {
+        color: var(--color-blue);
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        column-gap: 5px;
+        height: 40px;
+        padding-inline: 10px;
+        border-radius: var(--border-radius-small);
+        background-color: var(--color-purple-light);
+        color: var(--color-blue);
+        svg {
+            width: 16px;
+            fill: var(--color-blue);
+        }
+
+        @include hover {
+            background-color: var(--color-gray);
+        }
+
+    }
+}

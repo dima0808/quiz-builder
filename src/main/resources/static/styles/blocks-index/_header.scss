@@ -61,6 +61,14 @@
     align-items: center;
     column-gap: 40px;
 
+    &--test {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 40px;
+      padding-inline: 20px;
+    }
+
     @include desktop {
       column-gap: 10px;
     }
@@ -77,6 +85,10 @@
   &__menu {
     margin-left: auto;
     font-size: 20px;
+
+    &--test {
+      font-size: 20px;
+    }
 
     &-list {
       display: flex;

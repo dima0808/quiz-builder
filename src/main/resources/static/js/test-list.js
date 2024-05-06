@@ -1,52 +1,11 @@
-// Функція для відображення тестів на сторінці
-function displayTests(testsToDisplay) {
-    let testList = document.getElementById("test-list");
-    testList.innerHTML = ""; // Очищення вмісту перед оновленням
+// Функція для додавання до списку вподобань
+function addToFavorites(item) {
+    console.log('Додано до списку вподобань: ' + item);
+}
 
-    testsToDisplay.forEach(function(test) {
-        let testItem = document.createElement("li");
-        testItem.classList.add("search-result__item");
-
-        let testCard = document.createElement("article");
-        testCard.classList.add("search-result-card");
-
-        let testCardBody = document.createElement("div");
-        testCardBody.classList.add("search-result-card__body");
-
-        let testHeader = document.createElement("div");
-        testHeader.classList.add("search-result-card__header");
-        let testName = document.createElement("h3");
-        testName.textContent = test.name;
-        testHeader.appendChild(testName);
-
-        let testDescription = document.createElement("div");
-        testDescription.classList.add("search-result-card__description");
-        let testDescriptionText = document.createElement("p");
-        testDescriptionText.textContent = test.description;
-        testDescription.appendChild(testDescriptionText);
-
-        let startButton = document.createElement("div");
-        startButton.classList.add("search-result-card__start");
-        let startLink = document.createElement("a");
-        startLink.href = "#"; // Посилання на початок тесту
-        startLink.classList.add("search-result-card__link");
-        startLink.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-52.1 52.1 0 0-1-1 0 0-16-16-96-96-17-17 52.1-52.1c25-25 65.5-25 90.5 0zM241 114.9c-9.4-9.4-24.6-9.4-33.9 0L105 217c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L173.1 81c28.1-28.1 73.7-28.1 101.8 0L288 94.1l17 17 96 96 16 16 1 1-17 17L229.5 412.5c-48 48-109.2 80.8-175.8 94.1l-25 5c-7.9 1.6-16-.9-21.7-6.6s-8.1-13.8-6.6-21.7l5-25c13.3-66.6 46.1-127.8 94.1-175.8L254.1 128 241 114.9z"/></svg>
-            Переглянути тест
-        `;
-        startLink.addEventListener("click", function() {
-            alert("Ви хочете перейти на сторінку з текстом: " + test.name);
-        });
-        startButton.appendChild(startLink);
-
-        testCardBody.appendChild(testHeader);
-        testCardBody.appendChild(testDescription);
-        testCardBody.appendChild(startButton);
-        testCard.appendChild(testCardBody);
-        testItem.appendChild(testCard);
-
-        testList.appendChild(testItem);
-    });
+// Функція для видалення зі списку вподобань
+function removeFromFavorites(item) {
+    console.log('Видалено зі списку вподобань: ' + item);
 }
 
 // Функція для отримання тестів зі служби
@@ -190,3 +149,91 @@ function handleFilterChange() {
 document.querySelectorAll('input[name="topic"]').forEach(function(radio) {
     radio.addEventListener('change', handleFilterChange);
 });
+
+// Функція для відображення тестів на сторінці
+function displayTests(testsToDisplay) {
+    let testList = document.getElementById("test-list");
+    testList.innerHTML = ""; // Очищення вмісту перед оновленням
+
+    testsToDisplay.forEach(function(test) {
+        let testItem = document.createElement("li");
+        testItem.classList.add("search-result__item");
+    
+        let testCard = document.createElement("article");
+        testCard.classList.add("search-result-card");
+    
+        let testCardBody = document.createElement("div");
+        testCardBody.classList.add("search-result-card__body");
+    
+        let testHeader = document.createElement("div");
+        testHeader.classList.add("search-result-card__header");
+        let testName = document.createElement("h3");
+        testName.textContent = test.name;
+        testHeader.appendChild(testName);
+    
+        let testDescription = document.createElement("div");
+        testDescription.classList.add("search-result-card__description");
+        let testDescriptionText = document.createElement("p");
+        testDescriptionText.textContent = test.description;
+        testDescription.appendChild(testDescriptionText);
+    
+        let testInfo = document.createElement("div");
+        testInfo.classList.add("search-result-card__info");
+    
+        let testCounter = document.createElement("p");
+        testCounter.classList.add("search-result-card__info--counter");
+        testCounter.textContent = "Кількість проходжень: " + test.counter;
+        testInfo.appendChild(testCounter);
+    
+        let testRating = document.createElement("p");
+        testRating.classList.add("search-result-card__info--rating");
+        testRating.textContent = "Тест " + (test.passed ? "пройдено" : "не пройдено");
+        testInfo.appendChild(testRating);
+    
+        let startButton = document.createElement("div");
+        startButton.classList.add("search-result-card__start");
+    
+        let startLink = document.createElement("a");
+        startLink.href = "#"; // Посилання на початок тесту
+        startLink.classList.add("search-result-card__link");
+        startLink.innerHTML = `
+            <i class="fa-solid fa-eye"></i>
+            Переглянути тест
+        `;
+        startLink.addEventListener("click", function() {
+            alert("Ви хочете перейти на сторінку з текстом: " + test.name);
+        });
+    
+        let likeButton = document.createElement("div");
+        likeButton.classList.add("btn__like");
+        let likeBtn = document.createElement("button");
+        likeBtn.classList.add("like-btn");
+        likeBtn.textContent = "❤";
+        likeBtn.addEventListener("click", function() {
+            // Перевіряємо, чи кнопка має клас "liked"
+            if (likeBtn.classList.contains('liked')) {
+                // Якщо так, видаляємо клас "liked"
+                likeBtn.classList.remove('liked');
+                removeFromFavorites(test.name);
+            } else {
+                // Інакше додаємо клас "liked"
+                likeBtn.classList.add('liked');
+                addToFavorites(test.name);
+            }
+        });
+        likeButton.appendChild(likeBtn);
+    
+        startButton.appendChild(startLink);
+        startButton.appendChild(likeButton);
+    
+        testCardBody.appendChild(testHeader);
+        testCardBody.appendChild(testDescription);
+        testCardBody.appendChild(testInfo);
+        testCardBody.appendChild(startButton);
+    
+        testCard.appendChild(testCardBody);
+        testItem.appendChild(testCard);
+    
+        testList.appendChild(testItem);
+    });    
+}

@@ -2147,7 +2147,7 @@ form input[type=checkbox] {
 }
 
 .search-result-card {
-  min-height: 300px;
+  min-height: 250px;
   padding: 30px;
   background-color: var(--color-light);
   border-radius: var(--border-radius);
@@ -2160,13 +2160,33 @@ form input[type=checkbox] {
     min-height: auto;
   }
 }
+.search-result-card__description {
+  padding-top: 15px;
+  max-height: 3.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  color: #666;
+}
+.search-result-card__info {
+  margin-top: auto;
+  padding-bottom: 10px;
+}
+.search-result-card__start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .search-result-card__header {
   color: var(--color-blue);
 }
 .search-result-card__body {
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  justify-content: space-between;
+  min-height: 250px;
 }
 .search-result-card__link {
   display: inline-flex;
@@ -2192,6 +2212,20 @@ form input[type=checkbox] {
   .search-result-card__link:active {
     background-color: var(--color-gray);
   }
+}
+
+.like-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-size: 30px;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.liked {
+  color: var(--color-blue);
 }
 
 .sidebar {

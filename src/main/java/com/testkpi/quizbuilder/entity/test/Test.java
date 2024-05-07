@@ -1,5 +1,6 @@
 package com.testkpi.quizbuilder.entity.test;
 
+import com.testkpi.quizbuilder.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 

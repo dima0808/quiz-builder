@@ -46,4 +46,9 @@ public class TestServiceImpl implements TestService {
     public void deleteAllTests() {
         testRepository.deleteAll();
     }
+
+    @Override
+    public void deleteById(Long testId) {
+        testRepository.deleteById(testId);
+    }
 }

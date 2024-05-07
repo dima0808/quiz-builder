@@ -11,5 +11,7 @@ public interface TestService {
 
     List<Test> findAllTests();
 
+    Test findTestById(Long testId);
+
     void deleteAllTests();
 }

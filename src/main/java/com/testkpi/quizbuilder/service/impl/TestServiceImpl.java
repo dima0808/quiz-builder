@@ -38,6 +38,11 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    public Test findTestById(Long testId) {
+        return testRepository.findById(testId).orElse(null);
+    }
+
+    @Override
     public void deleteAllTests() {
         testRepository.deleteAll();
     }

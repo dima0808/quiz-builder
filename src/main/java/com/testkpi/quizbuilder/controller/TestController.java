@@ -1,13 +1,16 @@
 package com.testkpi.quizbuilder.controller;
 
+import com.testkpi.quizbuilder.entity.User;
 import com.testkpi.quizbuilder.entity.test.Test;
 import com.testkpi.quizbuilder.payload.TestDto;
 import com.testkpi.quizbuilder.response.OperationResponse;
+import com.testkpi.quizbuilder.service.AuthService;
 import com.testkpi.quizbuilder.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +20,12 @@ import java.util.List;
 public class TestController {
 
     private final TestService testService;
+    private final AuthService authService;
 
     @Autowired
-    public TestController(TestService testService) {
+    public TestController(TestService testService, AuthService authService) {
         this.testService = testService;
+        this.authService = authService;
     }
 
     @GetMapping
@@ -38,10 +43,34 @@ public class TestController {
 
 //    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping
-    private ResponseEntity<OperationResponse> deleteAllTests() {
+    public ResponseEntity<OperationResponse> deleteAllTests() {
         testService.deleteAllTests();
         OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
                 "All tests deleted successfully.", System.currentTimeMillis());
+        return new ResponseEntity<>(testResponse, HttpStatus.OK);
+    }
+
+    @PatchMapping("/like")
+    public ResponseEntity<OperationResponse> addLikedTest(@RequestBody Long testId) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = authService.findUserByUsername(username);
+        Test test = testService.findTestById(testId);
+        user.addLikedTest(test);
+        authService.updateUser(user);
+        OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
+                "Test '" + test.getName() + "' has been added to favorites.", System.currentTimeMillis());
+        return new ResponseEntity<>(testResponse, HttpStatus.OK);
+    }
+
+    @PatchMapping("/dislike")
+    public ResponseEntity<OperationResponse> removeLikedTest(@RequestBody Long testId) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = authService.findUserByUsername(username);
+        Test test = testService.findTestById(testId);
+        user.removeLikedTest(test);
+        authService.updateUser(user);
+        OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
+                "Test '" + test.getName() + "' has been removed from favorites.", System.currentTimeMillis());
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 }

@@ -50,8 +50,24 @@ public class TestController {
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 
-    @PatchMapping("/like")
-    public ResponseEntity<OperationResponse> addLikedTest(@RequestBody Long testId) {
+    //    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{testId}")
+    public ResponseEntity<OperationResponse> deleteTest(@PathVariable Long testId) {
+        testService.deleteById(testId);
+        OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
+                "Test with id " + testId + " deleted successfully.", System.currentTimeMillis());
+        return new ResponseEntity<>(testResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/liked")
+    public List<Test> getAllLikedTests() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = authService.findUserByUsername(username);
+        return user.getLikedTests();
+    }
+
+    @PatchMapping("/like/{testId}")
+    public ResponseEntity<OperationResponse> addLikedTest(@PathVariable Long testId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = authService.findUserByUsername(username);
         Test test = testService.findTestById(testId);
@@ -62,8 +78,8 @@ public class TestController {
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 
-    @PatchMapping("/dislike")
-    public ResponseEntity<OperationResponse> removeLikedTest(@RequestBody Long testId) {
+    @PatchMapping("/dislike/{testId}")
+    public ResponseEntity<OperationResponse> removeLikedTest(@PathVariable Long testId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = authService.findUserByUsername(username);
         Test test = testService.findTestById(testId);

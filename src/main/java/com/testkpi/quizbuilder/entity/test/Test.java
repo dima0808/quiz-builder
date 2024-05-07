@@ -1,10 +1,7 @@
 package com.testkpi.quizbuilder.entity.test;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "tests")
 public class Test {
@@ -19,9 +17,12 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String author;
+    @Column(nullable = false)
     private String name;
     private String description;
+    @Column(nullable = false)
     private String topic;
     private Short status;
 

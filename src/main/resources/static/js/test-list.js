@@ -1,12 +1,60 @@
-// Функція для додавання до списку вподобань
-function addToFavorites(item) {
-    console.log('Додано до списку вподобань: ' + item);
+// Додаємо обробник подій для радіокнопок
+const radioButtons = document.querySelectorAll('input[name="menu"]');
+radioButtons.forEach(button => {
+    button.addEventListener('change', function() {
+        const selectedValue = this.value; // Отримуємо вибране значення
+
+        // Отримуємо список тестів з урахуванням вибраного фільтра
+        handleFilterChange();
+    });
+});
+
+
+// Функція для отримання лайкнутих тестів
+function getLikedTests() {
+    return fetch('/api/test/liked')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch liked tests');
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error fetching liked tests:', error);
+        });
 }
 
-// Функція для видалення зі списку вподобань
-function removeFromFavorites(item) {
-    console.log('Видалено зі списку вподобань: ' + item);
+// Функція для додавання до списку вподобань
+function likeTest(testId) {
+    fetch(`/api/test/like/${testId}`, {
+        method: 'PATCH'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Не вдалося виконати запит для лайкнення тесту');
+        }
+        console.log(`Тест з id ${testId} було лайкнуто`);
+        // Опціонально: оновити інтерфейс користувача для відображення змін
+    })
+    .catch(error => console.error('Сталася помилка при лайкненні тесту:', error));
 }
+
+function dislikeTest(testId) {
+    fetch(`/api/test/dislike/${testId}`, {
+        method: 'PATCH'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Не вдалося виконати запит для видалення лайку з тесту');
+        }
+        console.log(`Лайк з тесту з id ${testId} було видалено`);
+        // Опціонально: оновити інтерфейс користувача для відображення змін
+    })
+    .catch(error => console.error('Сталася помилка при видаленні лайку з тесту:', error));
+}
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 // Функція для отримання тестів зі служби
 function fetchTests() {
@@ -124,26 +172,53 @@ function handleListItemClick(event) {
 // Додаємо обробник події для вибору теми зі списку
 document.querySelector(".search-list").addEventListener("click", handleListItemClick);
 
-// Функція для обробки подій вибору типу тесту та пошуку
-function handleFilterChange() {
-    let selectedFilter = document.querySelector('input[name="topic"]:checked').value;
-    let searchText = document.getElementById("search-test").value.trim().toLowerCase();
-    
-    // Отримання відповідних тестів
-    let filteredTests = window.allTests.filter(function(test) {
-        return test.name.toLowerCase().includes(searchText) || test.description.toLowerCase().includes(searchText);
-    });
+// Функція для обробки фільтрації тестів
+async function handleFilterChange() {
+    const selectedMenu = document.querySelector('input[name="menu"]:checked').value;
+    const selectedFilter = document.querySelector('input[name="topic"]:checked').value;
+    const searchText = document.getElementById("search-test").value.trim().toLowerCase();
+
+    let filteredTests = [];
+
+    // Фільтрація тестів відповідно до обраного типу тесту (Головна, Мої тести, Вподобані)
+    if (selectedMenu === 'home') {
+        filteredTests = allTests;
+    } else if (selectedMenu === 'mytest') {
+        const currentUser = document.querySelector('.header__user-name').textContent;
+        filteredTests = allTests.filter(test => test.author === currentUser);
+    } else if (selectedMenu === 'favorite') {
+        filteredTests = await getFilteredLikedTests(); // Отримуємо та фільтруємо лайкнуті тести
+    }
 
     // Фільтрація за темою
     if (selectedFilter !== 'all') {
-        filteredTests = filteredTests.filter(function(test) {
-            return test.topic === selectedFilter;
-        });
+        filteredTests = filteredTests.filter(test => test.topic === selectedFilter);
     }
 
-    // Відображення відфільтрованих тестів на сторінці
+    // Фільтрація за пошуковим запитом
+    filteredTests = filteredTests.filter(test => test.name.toLowerCase().includes(searchText) || test.description.toLowerCase().includes(searchText));
+
+    // Відображення відфільтрованих тестів
     displayTests(filteredTests);
 }
+
+// Функція для отримання лайкнутих тестів та їх фільтрації
+async function getFilteredLikedTests() {
+    const likedTests = await getLikedTests(); // Отримати список клікнутих тестів
+
+    // Фільтруємо тести відповідно до обраних критеріїв
+    const selectedFilter = document.querySelector('input[name="topic"]:checked').value;
+    const searchText = document.getElementById("search-test").value.trim().toLowerCase();
+    const filteredTests = likedTests.filter(test => {
+        return (selectedFilter === 'all' || test.topic === selectedFilter) &&
+               (test.name.toLowerCase().includes(searchText) || test.description.toLowerCase().includes(searchText));
+    });
+
+    return filteredTests;
+}
+
+
+
 
 // Додаємо обробник подій для радіо кнопок
 document.querySelectorAll('input[name="topic"]').forEach(function(radio) {
@@ -151,7 +226,10 @@ document.querySelectorAll('input[name="topic"]').forEach(function(radio) {
 });
 
 // Функція для відображення тестів на сторінці
-function displayTests(testsToDisplay) {
+// Функція для відображення тестів на сторінці
+async function displayTests(testsToDisplay) {
+    let likedTests = await getLikedTests(); // Отримати список клікнутих тестів
+    
     let testList = document.getElementById("test-list");
     testList.innerHTML = ""; // Очищення вмісту перед оновленням
 
@@ -209,16 +287,22 @@ function displayTests(testsToDisplay) {
         let likeBtn = document.createElement("button");
         likeBtn.classList.add("like-btn");
         likeBtn.textContent = "❤";
+        
+        // Перевірити, чи `test.id` є у списку клікнутих тестів
+        if (likedTests.some(likedTest => likedTest.id === test.id)) {
+            likeBtn.classList.add('liked'); // Додати клас "liked", якщо тест клікнуто
+        }
+
         likeBtn.addEventListener("click", function() {
             // Перевіряємо, чи кнопка має клас "liked"
             if (likeBtn.classList.contains('liked')) {
                 // Якщо так, видаляємо клас "liked"
                 likeBtn.classList.remove('liked');
-                removeFromFavorites(test.name);
+                dislikeTest(test.id);
             } else {
                 // Інакше додаємо клас "liked"
                 likeBtn.classList.add('liked');
-                addToFavorites(test.name);
+                likeTest(test.id);
             }
         });
         likeButton.appendChild(likeBtn);

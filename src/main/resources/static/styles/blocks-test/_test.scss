@@ -91,6 +91,15 @@
 
 .btn__create-test {
     @include flex-center(false);
+    margin-bottom: 10px;
+
+    & #btn-link-login {
+        text-align: center;
+        background-color: var(--color-light);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        padding: 5px;
+        border-radius: 10px;
+    } 
 
     & a {
         display: inline-flex;

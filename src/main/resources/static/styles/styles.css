@@ -196,7 +196,7 @@ svg * {
   --section-padding-y: 70px;
   --input-height: 59px;
   --button-height: 68px;
-  --button-link: 58px;
+  --button-link: 54px;
   --transition-duration: 0.2s;
 }
 @media (max-width: 1280px) {
@@ -2333,6 +2333,14 @@ form input[type=checkbox] {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
+}
+.btn__create-test #btn-link-login {
+  text-align: center;
+  background-color: var(--color-light);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  border-radius: 10px;
 }
 .btn__create-test a {
   display: inline-flex;

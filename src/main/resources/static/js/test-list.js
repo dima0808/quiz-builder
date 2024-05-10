@@ -2,7 +2,6 @@
 const radioButtons = document.querySelectorAll('input[name="menu"]');
 radioButtons.forEach(button => {
     button.addEventListener('change', function() {
-        const selectedValue = this.value; // Отримуємо вибране значення
 
         // Отримуємо список тестів з урахуванням вибраного фільтра
         handleFilterChange();
@@ -12,17 +11,23 @@ radioButtons.forEach(button => {
 
 // Функція для отримання лайкнутих тестів
 function getLikedTests() {
-    return fetch('/api/test/liked')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch liked tests');
-            }
-            return response.json();
-        })
-        .catch(error => {
-            console.error('Error fetching liked tests:', error);
-        });
+    // Перевіряємо, чи ім'я користувача не є "anonymousUser"
+    if (document.querySelector('.header__user-name').textContent !== "anonymousUser") {
+        return fetch('/api/test/liked')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch liked tests');
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error fetching liked tests:', error);
+            });
+    } else {
+        return Promise.resolve([]); // Повертаємо пустий масив, якщо користувач анонімний
+    }
 }
+
 
 // Функція для додавання до списку вподобань
 function likeTest(testId) {
@@ -71,6 +76,9 @@ function fetchTests() {
 // Функція для пошуку тестів за назвою
 function searchTests(event) {
     if (event.key === 'Enter') {
+        // Змінюємо значення `selectedMenu` на "home"
+        document.getElementById("home").checked = true;
+        
         let searchText = document.getElementById("search-test").value.trim().toLowerCase();
         
         // Отримання відповідних тестів
@@ -292,9 +300,15 @@ async function displayTests(testsToDisplay) {
         if (likedTests.some(likedTest => likedTest.id === test.id)) {
             likeBtn.classList.add('liked'); // Додати клас "liked", якщо тест клікнуто
         }
-
+        const isAnonymous = document.querySelector('.header__user-name').textContent
         likeBtn.addEventListener("click", function() {
-            // Перевіряємо, чи кнопка має клас "liked"
+            // Перевіряємо, чи користувач анонімний
+            if (isAnonymous === "anonymousUser") {
+                // Якщо так, просто виходимо з функції
+                return;
+            }
+        
+            // Якщо користувач не анонімний, продовжуємо звичайну логіку
             if (likeBtn.classList.contains('liked')) {
                 // Якщо так, видаляємо клас "liked"
                 likeBtn.classList.remove('liked');
@@ -305,6 +319,7 @@ async function displayTests(testsToDisplay) {
                 likeTest(test.id);
             }
         });
+        
         likeButton.appendChild(likeBtn);
     
         startButton.appendChild(startLink);

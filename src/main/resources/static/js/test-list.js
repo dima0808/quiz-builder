@@ -233,7 +233,29 @@ document.querySelectorAll('input[name="topic"]').forEach(function(radio) {
     radio.addEventListener('change', handleFilterChange);
 });
 
-// Функція для відображення тестів на сторінці
+function showNotification(message, duration) {
+    const notification = document.getElementById('notification');
+    const progressBar = document.getElementById('progressBar');
+  
+    notification.style.padding = '20px 40px';
+  
+    notification.innerText = message;
+    notification.style.display = 'block';
+  
+    progressBar.style.width = '0'; 
+    progressBar.style.transition = `width ${duration}ms linear`;
+  
+    progressBar.style.width = '100%'; // 
+  
+    setTimeout(() => {
+      notification.style.display = 'none';
+      progressBar.style.width = '0';
+      
+      notification.style.padding = '0';
+    }, duration);
+  }
+
+
 // Функція для відображення тестів на сторінці
 async function displayTests(testsToDisplay) {
     let likedTests = await getLikedTests(); // Отримати список клікнутих тестів
@@ -287,8 +309,10 @@ async function displayTests(testsToDisplay) {
             Переглянути тест
         `;
         startLink.addEventListener("click", function() {
-            alert("Ви хочете перейти на сторінку з текстом: " + test.name);
+            // Перенаправляємо користувача на сторінку з детальною інформацією про тест
+            window.location.href = `/test-details.html?id=${test.id}`; 
         });
+        
     
         let likeButton = document.createElement("div");
         likeButton.classList.add("btn__like");
@@ -304,11 +328,14 @@ async function displayTests(testsToDisplay) {
         likeBtn.addEventListener("click", function() {
             // Перевіряємо, чи користувач анонімний
             if (isAnonymous === "anonymousUser") {
-                // Якщо так, просто виходимо з функції
+                // Показуємо вспливаюче повідомлення з проханням увійти в акаунт
+                showNotification('⚠ Увійдіть в акаунт!', 5000)
+                
+                // Виходимо з функції, оскільки дія користувача не дозволена
                 return;
             }
         
-            // Якщо користувач не анонімний, продовжуємо звичайну логіку
+            // Якщо користувач не анонімний, виконуємо звичайну логіку кнопки лайка
             if (likeBtn.classList.contains('liked')) {
                 // Якщо так, видаляємо клас "liked"
                 likeBtn.classList.remove('liked');

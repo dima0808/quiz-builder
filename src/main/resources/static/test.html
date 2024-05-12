@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/styles/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Тести</title>
   </head>
   <body>
     <header class="header">
@@ -77,12 +78,13 @@
 
                   <input type="radio" id="favorite" name="menu" value="favorite">
                   <label for="favorite">
-                    <i class="fa-solid fa-bookmark"></i>
+                    <span style="color: #5372f0;">❤</span>
                     Вподобані
                   </label>
                 </div>
                 <div class="btn__create-test">
-                  <a href="./create-test.html">
+                  <span id="btn-link-login" class="visually-hidden">Увійдіть в акаунт, аби створити тест</span>
+                  <a id="btn-link-create" href="./create-test.html">
                     <i class="fa-solid fa-circle-plus"></i>
                     Створити тест
                   </a>
@@ -103,7 +105,7 @@
               
               <div class="search-result">
                 <ul class="search-result__list" id="test-list">
-                    
+
                 </ul>
               </div>
             </div>
@@ -157,7 +159,13 @@
       </div>
     </dialog>
 
+    <div class="notification-container">
+      <div id="notification"></div>
+      <div id="progressBar"></div>
+    </div>
+
     <script src="js/username.js"></script>
     <script src="js/test-list.js"></script>
+
   </body>
 </html>

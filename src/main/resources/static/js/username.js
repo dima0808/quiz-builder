@@ -2,6 +2,9 @@ const usernames = document.querySelectorAll('.header__user-name');
 const divSignBtns = document.querySelectorAll('.header__link');
 const divUsers = document.querySelectorAll('.header__user');
 const divContactBlockeds = document.querySelectorAll('.contact-us__blocked');
+const divLinkCreateTest = document.getElementById('btn-link-create');
+const divLinkLogin = document.getElementById('btn-link-login')
+const divLike = document.querySelectorAll('btn__like')
 
 async function getUsername() {
     const response = await fetch('/api/home', {
@@ -14,7 +17,7 @@ async function getUsername() {
     response.json().then(user => {
         const isAnonymous = user.username === "anonymousUser";
         usernames.forEach(username => {
-            username.innerHTML = isAnonymous ? '' : user.username;
+            username.innerHTML = isAnonymous ? 'anonymousUser' : user.username;
         });
         divSignBtns.forEach(divSignBtn => {
             if (isAnonymous) {
@@ -37,6 +40,13 @@ async function getUsername() {
                 divContactBlocked.classList.add('visually-hidden');
             }
         });
+        if (isAnonymous) {
+            divLinkCreateTest.classList.add("visually-hidden");
+            divLinkLogin.classList.remove("visually-hidden");
+        } else {
+            divLinkCreateTest.classList.remove("visually-hidden");
+            divLinkLogin.classList.add("visually-hidden");
+        }
     });
 }
 

@@ -1,0 +1,36 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 150px);
+    justify-content: center;
+
+    &__header {
+        color: var(--color-blue);
+        margin-bottom: 40px;
+    }
+
+    &__description {
+        margin-bottom: 15px;
+    }
+
+    &__questcount {
+        margin-bottom: 40px;
+    }
+
+    &__btn {
+        &--start {
+            @include hover {
+                background-color: #007bff;
+            }
+
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--color-blue);
+            color: var(--color-light);
+            cursor: pointer;
+        }
+    }
+}

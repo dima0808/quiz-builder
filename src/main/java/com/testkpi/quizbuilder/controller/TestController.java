@@ -33,6 +33,11 @@ public class TestController {
         return testService.findAllTests();
     }
 
+    @GetMapping("/{id}")
+    public Test getTest(@PathVariable Long id) {
+        return testService.findTestById(id);
+    }
+
     @PostMapping(value = {"/add", "/create"})
     public ResponseEntity<OperationResponse> createTest(@RequestBody TestDto testDto) {
         testService.saveTest(testDto);

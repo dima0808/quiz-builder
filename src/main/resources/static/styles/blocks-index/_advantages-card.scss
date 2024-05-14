@@ -1,0 +1,29 @@
+.advantages-card {
+    min-height: 310px;
+    padding: 50px;
+    background-color: var(--color-light);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+
+    @include hover {
+        box-shadow: 0 1px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    &__header {
+        display: flex;
+        column-gap: 30px;
+        align-items: center;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+
+        svg {
+            width: 100px;
+            aspect-ratio: 1;
+            fill: var(--color-blue)
+        }
+    }
+}

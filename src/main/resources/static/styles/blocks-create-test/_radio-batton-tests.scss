@@ -1,0 +1,132 @@
+.radio-batton-tests {
+  &-ol {
+    font-size: 28px;
+    padding-left: 45px;
+    list-style-type: lower-alpha;
+  }
+
+  &-li {
+    display: list-item;
+    list-style-position: outside;
+    &-grid {
+      display: grid;
+      grid-template-columns: auto 120px;
+      margin-left: 5px;
+      gap: 10%;
+    }
+  }
+
+  &-li:not(:last-child) {
+    margin-bottom: 9px;
+  }
+
+  &-buttons {
+    display: inline-flex;
+    column-gap: 16px;
+    justify-content: center;
+    align-items: center;
+    &-circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include square(35px);
+      position: relative;
+      background-color: var(--color-light);
+      border: 1px solid var(--color-blue-shadow);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    &-circle::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: calc(66% - 2px);
+      aspect-ratio: 1;
+      content: "";
+      background-color: var(--color-gray-light);
+
+      border-radius: inherit;
+      transition-duration: var(--transition-duration);
+    }
+    &-circle::before {
+      z-index: 1;
+      border: 1px solid var(--color-blue-shadow);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 66%;
+      aspect-ratio: 1;
+      content: "";
+      background-color: var(--color-accent);
+      border-radius: inherit;
+      transition-duration: var(--transition-duration);
+      transform: scale(0);
+    }
+    &-delete {
+      @include flex-center();
+      @include square(46px);
+      @include transition-out();
+      background-color: var(--color-blue-more-lighter);
+      border: 1px solid var(--color-blue-shadow);
+      border-radius: var(--border-radius-small-button);
+      color: var(--color-blue-shadow);
+      cursor: pointer;
+    }
+
+    &-delete:hover,
+    &-delete:active {
+      background-color: var(--color-blue-the-lightest);
+      color: var(--color-red);
+    }
+  }
+  &-plus {
+    @include flex-center();
+    @include square(50px);
+    @include transition-out();
+    background-color: var(--color-blue-more-lighter);
+    color: var(--color-blue-shadow);
+    border: 1px solid var(--color-blue-shadow);
+    border-radius: var(--border-radius-small-button);
+    cursor: pointer;
+  }
+  &-plus:hover,
+  &-plus:active {
+    background-color: var(--color-blue-the-lightest);
+    color: var(--color-accent);
+  }
+}
+.buttons-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 10px 0;
+}
+.button-add-test {
+  margin-right: 18px;
+}
+.button-rectangle-test {
+  width: 150px;
+  height: 50px;
+  @include transition-out();
+  background-color: var(--color-blue-more-lighter);
+  color: var(--color-blue-shadow);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+  line-height: 1.1;
+  cursor: pointer;
+}
+.button-rectangle-test:hover,
+.button-rectangle-test:active {
+  background-color: var(--color-blue-the-lightest);
+  color: var(--color-blue-shadow);
+}
+.flex-end-button {
+  display: flex;
+  justify-content: end;
+}
+.radio-batton-tests-buttons
+  input[type="radio"]:checked
+  + .radio-batton-tests-buttons-circle::before {
+  transform: scale(1);
+}

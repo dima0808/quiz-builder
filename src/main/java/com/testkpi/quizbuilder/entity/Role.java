@@ -1,6 +1,5 @@
 package com.testkpi.quizbuilder.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

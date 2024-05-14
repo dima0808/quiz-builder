@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner container">
+        <a href="/" class="header__logo logo nowrap"
+          >Kpi <span class="color-blue">Test</span>online</a
+        >
+        <nav class="header__menu hidden-desktop">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="" class="header__menu-link">Головна</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="./test.html" class="header__menu-link">Тести</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="" class="header__menu-link">Інформація</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact-us" class="header__menu-link">Зв'язок</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__link hidden-desktop">
+          <a href="/login" class="header__link-login">Вхід</a>
+          <a href="register.html" class="header__link-register">Реєстрація</a>
+        </div>
+        <div class="header__user visually-hidden hidden-desktop">
+          <button class="header__user-logined">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"
+              />
+            </svg>
+            <span class="header__user-name">user2005</span>
+          </button>
+          <form action="/logout" method="POST">
+            <button title="Вихід" type="submit" class="header__btn-exit">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+        <button
+          class="header__burger-button burger-button visible-desktop"
+          type="button"
+          onclick="mobileOverlay.showModal()"
+        >
+          <span class="visually-hidden">Open navigation menu</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="section container before-creation">
+        <div class="before-start">
+          <h2 class="before-creation-h1">Створіть свій ідеальний тест:</h2>
+          <div class="contact-us__field field">
+            <textarea
+              class="before-creation-text"
+              id="course-name"
+              name="course-name"
+              placeholder="Назва навчального тесту"
+              required
+            ></textarea>
+            <textarea
+              class="before-creation-text before-creation-text-description"
+              id="course-description"
+              name="course-description"
+              placeholder="Опис, деталі, додаткові дані тесту"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="dropdown__button">Виберіть тематику:</button>
+              <ul class="dropdown__list">
+                <li class="dropdown__list-item" data-value="work">
+                  Навчання
+                </li>
+                <li class="dropdown__list-item" data-value="question">
+                  Опитування
+                </li>
+                <li class="dropdown__list-item" data-value="quize">
+                  Квізи
+                </li>
+              </ul>
+              <input
+                type="text"
+                name="select-category"
+                value=""
+                class="dropdown__input-hidden"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="before-content"></div>
+      </section>
+      <section class="container section-creation">
+        <ol class="new-test-ol">
+
+        </ol>
+        <div class="flex-end-button">
+          <button class="button-rectangle-test button-add-test">
+            Додати запитання
+          </button>
+          <button class="button-rectangle-test button-save-test">
+            Зберегти тестування
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="mobile-overlay visible-desktop" id="mobileOverlay">
+      <form class="mobile-overlay__close-button-wrapper" method="dialog">
+        <button class="mobile-overlay__close-button cross-button" type="submit">
+          <span class="visually-hidden">Close navigation menu</span>
+        </button>
+      </form>
+      <div class="mobile-overlay__body">
+        <ul class="mobile-overlay__list">
+          <li class="mobile-overlay__item">
+            <a href="/" class="mobile-overlay__link">Головна</a>
+          </li>
+          <li class="mobile-overlay__item">
+            <a href="./test.html" class="mobile-overlay__link">Тести</a>
+          </li>
+          <li class="mobile-overlay__item">
+            <a href="/" class="mobile-overlay__link">Інформація</a>
+          </li>
+          <li class="mobile-overlay__item">
+            <a type="submit" href="#contact-us" class="mobile-overlay__link"
+              >Зв'язок</a
+            >
+          </li>
+          <li>
+            <div class="header__link">
+              <a href="/login" class="header__link-login">Вхід</a>
+              <a href="register.html" class="header__link-register"
+                >Реєстрація</a
+              >
+            </div>
+          </li>
+          <li>
+            <div class="header__user visually-hidden">
+                <button class="header__user-logined">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
+                    <span class="header__user-name">user2005</span>
+                </button>
+                <form action="/logout" method="POST">
+                    <button title="Вихід" type="submit" class="header__btn-exit">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
+                    </button>
+                </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </dialog>
+
+    <script src="js/header-visible.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="js/create-test.js"></script>
+    <script src="js/username.js"></script>
+  </body>
+</html>

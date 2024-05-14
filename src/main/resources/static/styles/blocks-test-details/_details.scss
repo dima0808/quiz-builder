@@ -1,0 +1,50 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+
+    &__body {
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 80px;
+        background-color: var(--color-light);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    &__header {
+        color: var(--color-blue);
+        margin-bottom: 40px;
+    }
+
+    &__description {
+        margin-bottom: 15px;
+    }
+
+    &__questcount {
+        margin-bottom: 40px;
+    }
+
+    &__btn {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &--start, &--edit {
+            @include hover {
+                background-color: #007bff;
+            }
+
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--color-blue);
+            color: var(--color-light);
+            cursor: pointer;
+        }
+    }
+}

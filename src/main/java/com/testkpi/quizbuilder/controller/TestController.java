@@ -94,4 +94,16 @@ public class TestController {
                 "Test '" + test.getName() + "' has been removed from favorites.", System.currentTimeMillis());
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
+
+    @PostMapping(value = {"/{testId}/pass", "/{testId}/complete"})
+    public ResponseEntity<OperationResponse> passTest(@PathVariable Long testId, @RequestBody Integer mark) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = authService.findUserByUsername(username);
+        Test test = testService.findTestById(testId);
+        user.addPassedTest(test, mark);
+        authService.updateUser(user);
+        OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
+                "Test '" + test.getName() + "' has been passed.", System.currentTimeMillis());
+        return new ResponseEntity<>(testResponse, HttpStatus.OK);
+    }
 }

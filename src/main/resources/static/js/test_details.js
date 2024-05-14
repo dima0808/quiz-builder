@@ -1,27 +1,23 @@
-// Приклад коду для заповнення інформації про тест з бази даних
-document.addEventListener("DOMContentLoaded", function() {
-    // Отримання ID тесту з URL
+document.addEventListener('DOMContentLoaded', function() {
+    // Отримання ID тесту з параметрів URL
     const urlParams = new URLSearchParams(window.location.search);
     const testId = urlParams.get('id');
 
-    // Отримання інформації про тест з бази даних
-    // Ваш код для запиту до бази даних, наприклад, з використанням Fetch або AJAX
+    // Виконання запиту до бази даних за допомогою fetch
+    fetch(`/api/test/${testId}`)
+        .then(response => response.json())
+        .then(test => {
+            // Відображення інформації про тест на сторінці
+            document.querySelector('.details__header h1').textContent = test.name;
+            document.querySelector('.details__description h4').textContent = test.description;
+            document.querySelector('.details__questcount p').textContent = `Кількість питань тесту: ${test.questions.length}`;
 
-    // Приклад коду для відображення інформації на сторінці
-    const testNameElement = document.querySelector('.details__header h1');
-    const testDescriptionElement = document.querySelector('.details__description h4');
-    const testQuestCountElement = document.querySelector('.details__questcount p');
-
-    // Заповнення отриманою інформацією
-    testNameElement.textContent = testData.name; // testData - об'єкт із інформацією про тест
-    testDescriptionElement.textContent = testData.description;
-    testQuestCountElement.textContent = `Кількість питань тесту: ${testData.questionCount}`;
-
-    // Додавання обробника події на кнопку "Почати тестування"
-    const startTestButton = document.querySelector('.details__btn--start');
-    startTestButton.addEventListener('click', function() {
-        // Перенаправлення на сторінку з тестуванням, де ви можете розпочати тест
-        window.location.href = `/start-test.html?id=${testId}`;
-    });
+            // Додавання обробника події для кнопки "Почати тестування"
+            const startTestButton = document.querySelector('.details__btn--start');
+            startTestButton.addEventListener('click', function() {
+                // Перенаправлення користувача на сторінку для проходження тесту
+                window.location.href = `/start-test.html?id=${testId}`;
+            });
+        })
+        .catch(error => console.error('Помилка при отриманні інформації про тест:', error));
 });
-

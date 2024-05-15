@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/test")
@@ -93,6 +95,21 @@ public class TestController {
         OperationResponse testResponse = new OperationResponse(HttpStatus.OK.value(),
                 "Test '" + test.getName() + "' has been removed from favorites.", System.currentTimeMillis());
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/passed")
+    public Map<Long, Integer> getAllPassedTests() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = authService.findUserByUsername(username);
+
+        Map<Test, Integer> passedTests = user.getPassedTests();
+        Map<Long, Integer> passedTestsById = new HashMap<>();
+
+        for (Map.Entry<Test, Integer> entry : passedTests.entrySet()) {
+            passedTestsById.put(entry.getKey().getId(), entry.getValue());
+        }
+
+        return passedTestsById;
     }
 
     @PostMapping(value = {"/{testId}/pass", "/{testId}/complete"})

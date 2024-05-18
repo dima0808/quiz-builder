@@ -716,7 +716,7 @@ document
       .then((data) => {
         console.log("Server response:", data);
         // перенаправлення на головну сторінку після успішного збереження
-        window.location.href = "/";
+        window.location.href = "/test.html";
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);

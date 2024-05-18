@@ -7,24 +7,30 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/api/test/${testId}`)
         .then(response => response.json())
         .then(test => {
+            // Додавання обробника події для кліку на стрілочку "Назад"
+            const backButton = document.querySelector('.icon-title');
+            backButton.addEventListener('click', function() {
+                window.location.href = `test-details.html?id=${test.id}`;
+            });
+
             // Відображення питань на сторінці
             const questionContainer = document.querySelector('.question-container');
-            test.questions.forEach(question => {
+            test.questions.forEach((question, index) => {
                 const questionElement = document.createElement('div');
                 questionElement.classList.add('question');
                 questionElement.innerHTML = `
-                    <h3>${question.text}</h3>
+                    <h3 class="question__header">${index + 1}. ${question.text}</h3>
                     ${question.answers.map(answer => `
                         <div>
-                            ${question.type === 1 ? `<input type="radio" name="question-${question.id}" value="${answer.id}">` : `<input type="checkbox" name="question-${question.id}" value="${answer.id}">`}
-                            <label>${answer.text}</label>
+                            ${question.type === 1 ? `<input id="${answer.id}" type="radio" name="question-${question.id}" value="${answer.id}">` : `<input id="${answer.id}" type="checkbox" name="question-${question.id}" value="${answer.id}">`}
+                            <label for="${answer.id}">${answer.text}</label>
                         </div>
                     `).join('')}
                 `;
                 questionContainer.appendChild(questionElement);
             });
 
-            // Функція для перевірки відповідей
+            // Функція для перевірки відповідей та збереження результату
             function checkAnswers() {
                 let score = 0;
                 test.questions.forEach(question => {
@@ -34,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         score++;
                     }
                 });
-                alert(`Ваш результат: ${score}/${test.questions.length}`);
+
+                // Відправляємо результат тесту на сервер
+                saveTestResult(testId, score);
             }
 
             // Обробник події кнопки "Завершити тест"
@@ -42,4 +50,29 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.addEventListener('click', checkAnswers);
         })
         .catch(error => console.error('Помилка при отриманні питань:', error));
+
+    // Функція для збереження результату тесту на сервері
+    function saveTestResult(testId, score) {
+        fetch(`/api/test/${testId}/pass`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(score),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Відповідь мережі була неправильною');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Результат тесту збережено:', data);
+            // Перенаправлення на сторінку test-details.html з ідентифікатором тесту
+            window.location.href = `test-details.html?id=${testId}`;
+        })
+        .catch(error => {
+            console.error('Виникла проблема із збереженням результату тесту:', error);
+        });
+    }
 });

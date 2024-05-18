@@ -28,6 +28,25 @@ function getLikedTests() {
     }
 }
 
+// Функція для отримання лайкнутих тестів
+function getPassedTests() {
+    // Перевіряємо, чи ім'я користувача не є "anonymousUser"
+    if (document.querySelector('.header__user-name').textContent !== "anonymousUser") {
+        return fetch('/api/test/passed')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch passed tests');
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error fetching passed tests:', error);
+            });
+    } else {
+        return Promise.resolve([]); // Повертаємо пустий масив, якщо користувач анонімний
+    }
+}
+
 
 // Функція для додавання до списку вподобань
 function likeTest(testId) {
@@ -259,6 +278,7 @@ function showNotification(message, duration) {
 // Функція для відображення тестів на сторінці
 async function displayTests(testsToDisplay) {
     let likedTests = await getLikedTests(); // Отримати список клікнутих тестів
+    let passedTests = await getPassedTests(); // Отримати список пройдених тестів
     
     let testList = document.getElementById("test-list");
     testList.innerHTML = ""; // Очищення вмісту перед оновленням
@@ -288,14 +308,9 @@ async function displayTests(testsToDisplay) {
         let testInfo = document.createElement("div");
         testInfo.classList.add("search-result-card__info");
     
-        let testCounter = document.createElement("p");
-        testCounter.classList.add("search-result-card__info--counter");
-        testCounter.textContent = "Кількість проходжень: " + test.counter;
-        testInfo.appendChild(testCounter);
-    
         let testRating = document.createElement("p");
         testRating.classList.add("search-result-card__info--rating");
-        testRating.textContent = "Тест " + (test.passed ? "пройдено" : "не пройдено");
+        testRating.textContent = "Тест " + (passedTests.hasOwnProperty(test.id) ? "успішно пройдено" : "не пройдено");
         testInfo.appendChild(testRating);
     
         let startButton = document.createElement("div");

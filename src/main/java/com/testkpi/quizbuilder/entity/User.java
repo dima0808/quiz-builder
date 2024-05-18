@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Setter
@@ -47,28 +45,11 @@ public class User {
     )
     private List<Test> likedTests;
 
-
-    @ElementCollection
-    @CollectionTable(name = "users_passed_tests",
-            joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_users_passed_tests_user_id", foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE")))
-    @MapKeyJoinColumn(name = "test_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_users_passed_tests_test_id", foreignKeyDefinition = "FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE"))
-    @Column(name = "grade")
-    private Map<Test, Integer> passedTests = new HashMap<>();
-
-
     public void addLikedTest(Test test) {
         likedTests.add(test);
     }
 
     public void removeLikedTest(Test test) {
         likedTests.remove(test);
-    }
-
-    public void addPassedTest(Test test, Integer mark) {
-        passedTests.put(test, mark);
-    }
-
-    public void removePassedTest(Test test) {
-        passedTests.remove(test);
     }
 }

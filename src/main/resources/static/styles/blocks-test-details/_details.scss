@@ -25,8 +25,16 @@
         margin-bottom: 15px;
     }
 
+    &__result {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
     &__questcount {
         margin-bottom: 40px;
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
     }
 
     &__btn {

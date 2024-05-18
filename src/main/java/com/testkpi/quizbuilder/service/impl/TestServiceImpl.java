@@ -51,4 +51,20 @@ public class TestServiceImpl implements TestService {
     public void deleteById(Long testId) {
         testRepository.deleteById(testId);
     }
+
+    @Override
+    public Test updateTest(Long testId, TestDto testDto) {
+
+        Test test = findTestById(testId);
+
+        test.setAuthor(testDto.getAuthor());
+        test.setName(testDto.getName());
+        test.setDescription(testDto.getDescription());
+        test.setTopic(test.getTopic());
+        test.setStatus(testDto.getStatus());
+        test.setQuestions(testDto.getQuestions());
+
+        testRepository.save(test);
+        return test;
+    }
 }

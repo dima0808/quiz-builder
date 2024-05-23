@@ -1,0 +1,59 @@
+@include tablet {
+  .before-creation {
+    grid-template-columns: 1fr 40px;
+  }
+  .section-creation {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@include mobile {
+  .before-creation {
+    grid-template-columns: 1fr 20px;
+    margin-top: 50px;
+  }
+  .section-creation {
+    padding: 20px 30px;
+  }
+  .radio-batton-tests-li-grid {
+    gap: 5px !important;
+    grid-template-columns: auto 90px !important;
+  }
+  .radio-batton-tests-buttons {
+    column-gap: 5px !important;
+  }
+}
+@include mobile-s {
+  .before-creation {
+    grid-template-columns: 1fr;
+    padding: 0 !important;
+    margin: 90px 15px 20px 15px !important;
+  }
+  .before-start {
+    padding: 0;
+  }
+  .question-area {
+    margin-top: 5px;
+  }
+  .section-creation {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .question-area {
+    font-size: 14px !important;
+  }
+  .before-creation-text {
+    font-size: 14px !important;
+    padding: 13px 10px 10px 10px;
+  }
+  .radio-batton-tests-ol {
+    font-size: 20px !important;
+    padding-left: 20px !important;
+  }
+}
+@include mobile-small {
+  .before-creation-text {
+    font-size: 12px !important;
+    padding: 5px 5px 5px 5px;
+  }
+}

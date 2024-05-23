@@ -1,0 +1,80 @@
+.contact-section {
+  margin: 30px 60px;
+}
+.text-support {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 10px;
+}
+.sent-textarea {
+  display: block;
+  width: 100%;
+  color: var(--color-blue-text);
+  background-color: var(--color-light);
+  border: 2px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small);
+  height: 84px;
+  padding: 13px 35px 10px 20px;
+  resize: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.sent-textarea:hover,
+.sent-textarea:focus,
+.sent-textarea:active {
+  border: 2px solid var(--color-blue-shadow);
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
+}
+.sent-textarea:focus-visible {
+  border-color: initial; /* Скидаємо колір обведення */
+  box-shadow: none; /* Прибираємо ефект тіні */
+  border: none;
+}
+.sent-text {
+  background-color: var(--color-blue-shadow);
+  color: var(--color-light);
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small);
+  @include transition-out();
+}
+.sent-text:active {
+  background-color: var(--color-blue);
+}
+.sent-text:hover,
+.sent-text:active {
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
+}
+.ul-grid-support {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+  gap: 24px;
+  color: var(--color-blue-text);
+}
+.technical-support-request {
+  padding: 10px 20px 15px 30px;
+  background-color: var(--color-light);
+
+  border-top-right-radius: var(--border-radius-small);
+  border-top-left-radius: var(--border-radius-small);
+  border-bottom-left-radius: var(--border-radius-small);
+  border: 1px solid var(--color-blue-shadow);
+}
+.technical-support-answer {
+  padding: 5px 15px 10px 20px;
+  margin-left: 40px;
+  border: 1px solid var(--color-blue-shadow);
+  border-top: none;
+  background-color: var(--color-blue-shadow-tint);
+
+  border-bottom-right-radius: var(--border-radius-small);
+
+  border-bottom-left-radius: var(--border-radius-small);
+}
+.div-between-data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+}

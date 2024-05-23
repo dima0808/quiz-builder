@@ -1,5 +1,6 @@
 package com.testkpi.quizbuilder.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.testkpi.quizbuilder.entity.test.Test;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -43,6 +44,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_users_liked_tests_user_id", foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE")),
             inverseJoinColumns = @JoinColumn(name = "test_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_users_liked_tests_test_id", foreignKeyDefinition = "FOREIGN KEY (test_id) REFERENCES tests(id) ON DELETE CASCADE"))
     )
+    @JsonIgnore
     private List<Test> likedTests;
 
     public void addLikedTest(Test test) {

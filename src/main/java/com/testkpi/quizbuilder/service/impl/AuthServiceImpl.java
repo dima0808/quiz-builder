@@ -4,6 +4,7 @@ import com.testkpi.quizbuilder.entity.Role;
 import com.testkpi.quizbuilder.entity.User;
 import com.testkpi.quizbuilder.exception.UserException;
 import com.testkpi.quizbuilder.payload.RegisterDto;
+import com.testkpi.quizbuilder.payload.UserDto;
 import com.testkpi.quizbuilder.repository.RoleRepository;
 import com.testkpi.quizbuilder.repository.UserRepository;
 import com.testkpi.quizbuilder.service.AuthService;
@@ -66,5 +67,17 @@ public class AuthServiceImpl implements AuthService {
     public User updateUser(User user) {
         return userRepository.save(user);
     }
+
+    @Override
+    public User updateUser(User existingUser, UserDto userDto) {
+
+        if (userDto.getFirstName() != null) existingUser.setFirstName(userDto.getFirstName());
+        if (userDto.getSecondName() != null) existingUser.setSecondName(userDto.getSecondName());
+        if (userDto.getEmail() != null) existingUser.setEmail(userDto.getEmail());
+        if(userDto.getPhoneNumber() !=  null) existingUser.setPhoneNumber(userDto.getPhoneNumber());
+
+        return userRepository.save(existingUser);
+    }
+
 
 }

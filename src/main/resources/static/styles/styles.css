@@ -178,7 +178,7 @@ svg * {
   --color-blue-text: #222e60;
   --color-blue-light: #a9b9f8;
   --color-violet-text: #542a60;
-  --color-blue-light: #a9b9f8;
+  --color-blue-shadow-tint: #eaebff;
   --color-blue-lighter: #d4dcfc;
   --color-blue-more-lighter: #eef1fe;
   --color-blue-the-lightest: #f6f8fe;
@@ -1780,6 +1780,66 @@ form input[type=checkbox] {
   box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
 }
 
+@media (max-width: 1023px) {
+  .before-creation {
+    grid-template-columns: 1fr 40px;
+  }
+  .section-creation {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .before-creation {
+    grid-template-columns: 1fr 20px;
+    margin-top: 50px;
+  }
+  .section-creation {
+    padding: 20px 30px;
+  }
+  .radio-batton-tests-li-grid {
+    gap: 5px !important;
+    grid-template-columns: auto 90px !important;
+  }
+  .radio-batton-tests-buttons {
+    -moz-column-gap: 5px !important;
+         column-gap: 5px !important;
+  }
+}
+@media (max-width: 480px) {
+  .before-creation {
+    grid-template-columns: 1fr;
+    padding: 0 !important;
+    margin: 90px 15px 20px 15px !important;
+  }
+  .before-start {
+    padding: 0;
+  }
+  .question-area {
+    margin-top: 5px;
+  }
+  .section-creation {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .question-area {
+    font-size: 14px !important;
+  }
+  .before-creation-text {
+    font-size: 14px !important;
+    padding: 13px 10px 10px 10px;
+  }
+  .radio-batton-tests-ol {
+    font-size: 20px !important;
+    padding-left: 20px !important;
+  }
+}
+@media (max-width: 386px) {
+  .before-creation-text {
+    font-size: 12px !important;
+    padding: 5px 5px 5px 5px;
+  }
+}
 .build-test-choise {
   display: grid;
   grid-template-columns: repeat(4, 110px);

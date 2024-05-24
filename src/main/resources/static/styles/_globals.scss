@@ -21,6 +21,10 @@ svg * {
   transition-duration: var(--transition-duration);
 }
 
+svg {
+  transition-duration: var(--transition-duration);
+}
+
 a {
   text-decoration: none;
   color: inherit;

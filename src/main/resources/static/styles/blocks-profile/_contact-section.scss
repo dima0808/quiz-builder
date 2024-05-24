@@ -5,6 +5,10 @@
   display: grid;
   grid-template-columns: 1fr 200px;
   gap: 10px;
+  background-color: var(--color-blue-shadow-tint);
+  padding: 16px 10px 16px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--color-blue-shadow);
 }
 .sent-textarea {
   display: block;
@@ -33,18 +37,22 @@
   border: none;
 }
 .sent-text {
+  height: 80%;
+  cursor: pointer;
   background-color: var(--color-blue-shadow);
   color: var(--color-light);
   border: 1px solid var(--color-blue-shadow);
   border-radius: var(--border-radius-small);
-  @include transition-out();
+  @include transition-out(0.4s);
+  grid-column: 2;
+  font-size: 22px;
 }
-.sent-text:active {
-  background-color: var(--color-blue);
-}
+
 .sent-text:hover,
 .sent-text:active {
-  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.1);
+  background-color: var(--color-blue-lighter) !important;
+  color: var(--color-blue-text) !important;
 }
 .ul-grid-support {
   display: grid;
@@ -77,4 +85,17 @@
   display: flex;
   justify-content: space-between;
   margin-top: 2px;
+}
+.text-support-theme {
+  height: 50px;
+  margin-bottom: 8px;
+}
+.technical-support-request-text-theme {
+  @include fluid-text(24, 20);
+  margin-bottom: 6px;
+  border-bottom: 1px solid currentColor;
+}
+.text-with-tint {
+  color: var(--color-blue-text-tint);
+  margin-top: 4px;
 }

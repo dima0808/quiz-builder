@@ -2787,6 +2787,7 @@ div > input[type=checkbox] {
   line-height: 1.2;
   font-size: clamp(14px, 1.5277777778vw, 22px);
   color: var(--color-blue-shadow);
+  cursor: pointer;
 }
 
 .div-for-grid {
@@ -2976,4 +2977,8 @@ div > input[type=checkbox] {
 .text-with-tint {
   color: var(--color-blue-text-tint);
   margin-top: 4px;
+}
+
+#test-finish, #my-test, #kpi-support {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */

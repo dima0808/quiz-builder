@@ -52,3 +52,11 @@
   display: flex;
   justify-content: end;
 }
+.btn-change-characteristics:hover,
+.btn-change-characteristics:active {
+  color: var(--color-violet-text);
+}
+.btn-save-characteristics:hover,
+.btn-save-characteristics:active {
+  color: var(--color-violet-text);
+}

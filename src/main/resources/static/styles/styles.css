@@ -2766,6 +2766,16 @@ div > input[type=checkbox] {
   justify-content: end;
 }
 
+.btn-change-characteristics:hover,
+.btn-change-characteristics:active {
+  color: var(--color-violet-text);
+}
+
+.btn-save-characteristics:hover,
+.btn-save-characteristics:active {
+  color: var(--color-violet-text);
+}
+
 .radio-btn-div {
   background-color: var(--color-blue-lighter);
   display: grid;
@@ -2866,6 +2876,12 @@ div > input[type=checkbox] {
   border: 1px solid var(--color-dark);
   border-radius: 4px;
   margin-top: -1px;
+}
+
+.account-p input:hover,
+.account-p input:active,
+.account-p input:focus {
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
 }
 
 .contact-section {
@@ -2979,6 +2995,86 @@ div > input[type=checkbox] {
   margin-top: 4px;
 }
 
-#test-finish, #my-test, #kpi-support {
+#test-finish,
+#my-test,
+#kpi-support {
   display: none;
+}
+
+.technical-support-answer-unanswered {
+  display: grid;
+  grid-template-columns: 1fr 150px 50px;
+  gap: 20px;
+  align-items: center;
+}
+
+.text-support-unanswered {
+  margin-right: 0px;
+  height: 66px;
+}
+
+.delete-reply-to-the-workers {
+  height: 50px;
+  color: var(--color-blue-shadow);
+  background-color: var(--color-blue-more-lighter);
+}
+
+.btn-colors {
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  border: 1px solid var(--color-blue-shadow);
+  border-radius: var(--border-radius-small-button);
+}
+
+.reply-to-the-workers {
+  height: 100%;
+  color: var(--color-light);
+  background-color: var(--color-blue-shadow);
+}
+
+.btn-colors:hover,
+.btn-colors:focus,
+.btn-colors:active {
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
+}
+
+.reply-to-the-workers:hover,
+.reply-to-the-workers:focus,
+.reply-to-the-workers:active {
+  color: var(--color-blue-shadow);
+  background-color: var(--color-blue-lighter);
+}
+
+.delete-reply-to-the-workers:hover,
+.delete-reply-to-the-workers:focus,
+.delete-reply-to-the-workers:active {
+  color: var(--color-red);
+  background-color: var(--color-light);
+}
+
+.h2-contact {
+  font-size: clamp(20px, 2.0833333333vw, 30px);
+  color: var(--color-blue-text);
+}
+
+.answered-requests {
+  margin-top: 20px;
+}
+
+.ul-grid-support-unanswered,
+.ul-grid-support-answered {
+  margin-top: 8px;
+}
+
+.grid-technical-support-answer {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  gap: 40px;
+}
+
+.btn-change-answer:hover,
+.btn-change-answer:active {
+  color: var(--color-violet-text);
+  box-shadow: 0px 0px 0px 4px rgba(42, 57, 200, 0.05);
+  background-color: var(--color-light);
 }/*# sourceMappingURL=styles.css.map */

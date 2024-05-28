@@ -7,6 +7,7 @@ import com.testkpi.quizbuilder.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +24,9 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public List<Feedback> getAllQuestions() {
-        return feedbackService.findAllQuestions();
+    public ResponseEntity<List<Feedback>> getAllQuestions() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok(feedbackService.findAllQuestionsByUsername(username));
     }
 
     @PostMapping(value = {"/add", "/create"})

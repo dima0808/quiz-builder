@@ -1,0 +1,30 @@
+.radio-btn-div {
+  background-color: var(--color-blue-lighter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0;
+  gap: 1px;
+  overflow: hidden;
+  height: 60px;
+}
+.in-div-btn {
+  height: 48px;
+  width: 100%;
+  @include flex-center;
+  background-color: var(--color-blue-shadow-tint);
+  border: none;
+  line-height: 1.2;
+  @include fluid-text(22, 14);
+  color: var(--color-blue-shadow);
+}
+.div-for-grid {
+  height: 48px;
+  @include flex-center;
+}
+.div-for-grid input {
+  display: none;
+}
+.div-for-grid input[type="radio"]:checked + .in-div-btn {
+  background-color: var(--color-blue-lighter);
+  color: var(--color-blue-text);
+}

@@ -1,10 +1,13 @@
 package com.testkpi.quizbuilder.service.impl;
 
+import com.testkpi.quizbuilder.entity.User;
 import com.testkpi.quizbuilder.entity.test.Test;
 import com.testkpi.quizbuilder.payload.TestDto;
+import com.testkpi.quizbuilder.repository.RoleRepository;
 import com.testkpi.quizbuilder.repository.TestRepository;
 import com.testkpi.quizbuilder.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +16,14 @@ import java.util.List;
 public class TestServiceImpl implements TestService {
 
     private final TestRepository testRepository;
+    private final AuthServiceImpl authService;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public TestServiceImpl(TestRepository testRepository) {
+    public TestServiceImpl(TestRepository testRepository, AuthServiceImpl authService, RoleRepository roleRepository) {
         this.testRepository = testRepository;
+        this.authService = authService;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -49,7 +56,16 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void deleteById(Long testId) {
-        testRepository.deleteById(testId);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Test test = findTestById(testId);
+
+        User user = authService.findUserByUsername(username);
+
+        if (test.getAuthor().equals(username) ||
+                user.getRoles().contains(roleRepository.findByName("ROLE_ADMIN").orElse(null))) {
+            testRepository.deleteById(testId);
+        }
     }
 
     @Override

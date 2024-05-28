@@ -16,6 +16,7 @@
   line-height: 1.2;
   @include fluid-text(22, 14);
   color: var(--color-blue-shadow);
+  cursor: pointer;
 }
 .div-for-grid {
   height: 48px;

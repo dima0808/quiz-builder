@@ -8,6 +8,13 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header class="header">
@@ -44,7 +51,7 @@
                 d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"
               />
             </svg>
-            <span class="header__user-name">user2005</span>
+            <a href="profile.html" class="header__user-name">user2005</a>
           </button>
           <form action="/logout" method="POST">
             <button title="Вихід" type="submit" class="header__btn-exit">
@@ -88,10 +95,6 @@
               Ім'я: <span id="firstName">Назар</span>
             </p>
 
-            <p class="midle-name-p account-p">
-              По-батькові: <span id="middleName">Юрійович</span>
-            </p>
-
             <p class="mail-name-p account-p">
               Електорона пошта: <span id="email">pupikpn@gmail.com</span>
             </p>
@@ -102,20 +105,7 @@
           </div>
           <div class="account-grid-buttons flex-end-btn">
             <button class="btn-change-characteristics btn-standart">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="svg-change-characteristics"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"
-                />
-              </svg>
+              <i class="fa-solid fa-feather"></i>
             </button>
           </div>
         </div>
@@ -159,10 +149,31 @@
             </div>
           </div>
           <!-- Пройдені тести -->
-          <div class="white-padding">
+          <div id="test-finish" class="white-padding">
             <ul class="blue-ul-grid">
               <li class="blue-li-grid">
-                <div class="white-div">Назва тесту</div>
+                <div class="white-div">Пройдені</div>
+                <div class="white-div white-div-center">Оцінка</div>
+              </li>
+              <li class="blue-li-grid">
+                <div class="white-div">
+                  <a href="#" class="a-in-li">Тест по баскетболу та тенісу</a>
+                </div>
+                <div class="white-div white-div-center">78%</div>
+              </li>
+              <li class="blue-li-grid">
+                <div class="white-div">
+                  <a href="#" class="a-in-li">Тест на IQ для чайників</a>
+                </div>
+                <div class="white-div white-div-center">56%</div>
+              </li>
+            </ul>
+          </div>
+          <!-- Створені тести -->
+          <div id="my-test" class="white-padding">
+            <ul class="blue-ul-grid">
+              <li class="blue-li-grid">
+                <div class="white-div">Створені тесту</div>
                 <div class="white-div white-div-center">Оцінка</div>
               </li>
               <li class="blue-li-grid">
@@ -180,25 +191,37 @@
             </ul>
           </div>
           <!-- Техпідтримка -->
-          <div class="contact-section">
-            <div class="text-support">
-              <textarea
-                class="sent-textarea"
-                name="text-support"
-                id="text-support"
-                placeholder="Напишіть запит"
-              ></textarea>
+          <!-- <div id="kpi-support" class="contact-section">
+            <form class="text-support">
+              <div class="textareas-div">
+                <textarea
+                  class="text-support-theme sent-textarea"
+                  name="text-support-theme "
+                  id="text-support-theme"
+                  placeholder="Напишіть заголовок"
+                ></textarea>
+                <textarea
+                  class="sent-textarea"
+                  name="text-support"
+                  id="text-support"
+                  placeholder="Напишіть запит"
+                ></textarea>
+              </div>
               <button class="sent-text">Відправити</button>
-            </div>
+            </form>
+
             <ul class="ul-grid-support">
               <li>
                 <div class="technical-support-request">
+                  <div class="technical-support-request-text-theme">
+                    AAAAAaaaa?
+                  </div>
                   <div class="technical-support-request-text">
                     Чому не на Фронті?
                   </div>
                   <div class="div-between-data">
-                    <div class="nickname-request">TNTeshka</div>
-                    <div class="date-request">01.04.2025</div>
+                    <div class="nickname-request text-with-tint">TNTeshka</div>
+                    <div class="date-request text-with-tint">01.04.2025</div>
                   </div>
                 </div>
                 <div class="technical-support-answer">
@@ -224,6 +247,110 @@
                 </div>
               </li>
             </ul>
+          </div> -->
+
+          <!-- Admin`s contact-section -->
+          <div id="kpi-support" class="contact-section contact-section-admin">
+            <div class="unanswered-requests">
+              <h2 class="h2-contact">Запити без відповіді</h2>
+              <ul class="ul-grid-support-unanswered ul-grid-support">
+                <li>
+                  <div class="technical-support-request">
+                    <div class="technical-support-request-text-theme">
+                      AAAAAaaaa?
+                    </div>
+                    <div class="technical-support-request-text">
+                      Чому не на Фронті?
+                    </div>
+                    <div class="div-between-data">
+                      <div class="nickname-request text-with-tint">
+                        TNTeshka
+                      </div>
+                      <div class="date-request text-with-tint">01.04.2025</div>
+                    </div>
+                  </div>
+                  <div
+                    class="technical-support-answer-unanswered technical-support-answer"
+                  >
+                    <textarea
+                      class="text-support-unanswered sent-textarea"
+                      name="text-support-unanswered"
+                      id="text-support-unanswered"
+                      placeholder="Напишіть відповідь"
+                    ></textarea>
+                    <button class="reply-to-the-workers btn-colors">
+                      Надіслати
+                    </button>
+                    <button class="delete-reply-to-the-workers btn-colors">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="trash-icon block-center"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Всі запроси -->
+            <div class="answered-requests">
+              <h2 class="h2-contact">Запити на які відповіли</h2>
+              <ul class="ul-grid-support-answered ul-grid-support">
+                <li>
+                  <div class="technical-support-request">
+                    <div class="technical-support-request-text-theme">
+                      AAAAAaaaa?
+                    </div>
+                    <div class="technical-support-request-text">
+                      Чому не на Фронті?
+                    </div>
+                    <div class="div-between-data">
+                      <div class="nickname-request text-with-tint">
+                        TNTeshka
+                      </div>
+                      <div class="date-request text-with-tint">01.04.2025</div>
+                    </div>
+                  </div>
+                  <div
+                    class="grid-technical-support-answer technical-support-answer"
+                  >
+                    <div>
+                      <div class="technical-support-answer-text">Того шо!</div>
+                      <div class="div-between-data">
+                        <div class="nickname-admin">admin</div>
+                        <div class="date-answer">01.04.2026</div>
+                      </div>
+                    </div>
+                    <button class="btn-standart btn-change-answer">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="trash-icon block-center"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -285,7 +412,7 @@
 
     <script src="js/header-visible.js"></script>
     <script src="js/username.js"></script>
-    <script src="js/test-list.js"></script>
     <script src="js/profile-changes.js"></script>
+    <script src="js/profile-switch.js"></script>
   </body>
 </html>

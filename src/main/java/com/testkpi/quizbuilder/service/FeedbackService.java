@@ -9,7 +9,11 @@ public interface FeedbackService {
 
     Feedback saveQuestion(FeedbackDto feedbackDto);
 
-    List<Feedback> findAllQuestions();
+    Feedback answer(Long id, FeedbackDto feedbackDto);
+
+    List<Feedback> findAllQuestionsAdmin();
+
+    Feedback findById(Long id);
 
     List<Feedback> findAllQuestionsByUsername(String username);
 }

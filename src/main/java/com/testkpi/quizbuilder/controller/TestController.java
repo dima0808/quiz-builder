@@ -12,7 +12,7 @@ import com.testkpi.quizbuilder.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,7 +68,7 @@ public class TestController {
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping
     public ResponseEntity<OperationResponse> deleteAllTests() {
         testService.deleteAllTests();
@@ -77,7 +77,6 @@ public class TestController {
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 
-    //    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{testId}")
     public ResponseEntity<OperationResponse> deleteTest(@PathVariable Long testId) {
         testService.deleteById(testId);

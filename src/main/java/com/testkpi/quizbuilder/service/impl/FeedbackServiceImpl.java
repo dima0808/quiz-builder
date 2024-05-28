@@ -34,8 +34,23 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public List<Feedback> findAllQuestions() {
+    public Feedback answer(Long id, FeedbackDto feedbackDto) {
+        Feedback question = findById(id);
+        if (feedbackDto.getAnswer() != null) {
+            question.setAnswer(feedbackDto.getAnswer());
+            question.setAnswerDate(LocalDate.now());
+        }
+        return feedbackRepository.save(question);
+    }
+
+    @Override
+    public List<Feedback> findAllQuestionsAdmin() {
         return feedbackRepository.findAll();
+    }
+
+    @Override
+    public Feedback findById(Long id) {
+        return feedbackRepository.findById(id).orElse(null);
     }
 
     @Override

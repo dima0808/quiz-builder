@@ -5,6 +5,9 @@ import com.testkpi.quizbuilder.payload.FeedbackDto;
 import com.testkpi.quizbuilder.repository.FeedbackRepository;
 import com.testkpi.quizbuilder.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -56,5 +59,17 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public List<Feedback> findAllQuestionsByUsername(String username) {
         return feedbackRepository.findAllByUsername(username);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+        Feedback feedback = findById(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.getName().equals(feedback.getUsername()) ||
+                authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            feedbackRepository.deleteById(id);
+        }
     }
 }

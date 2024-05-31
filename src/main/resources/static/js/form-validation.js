@@ -9,7 +9,7 @@ const eField = form.querySelector(".email"),
   rpInput = rpField.querySelector("input");
 
 form.onsubmit = async (e) => {
-  e.preventDefault(); // Попередження від відправки форми
+  e.preventDefault(); // Запобігання відправці форми
 
   // Перевірка полів форми на валідність
   eInput.value == "" ? eField.classList.add("shake", "error") : checkEmail();
@@ -99,7 +99,7 @@ form.onsubmit = async (e) => {
         password: pInput.value
       };
 
-      // Відправка форми на сервер
+      // Відправка форми на сервер для реєстрації
       const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
@@ -109,24 +109,30 @@ form.onsubmit = async (e) => {
       });
 
       if (response.status === 201) {
-        window.location.href = "/";
-      } else {
-        response.json().then(message => {
-          if (message.message === 'User already exists.') {
-            lField.classList.add("error");
-            lField.classList.remove("valid");
-            let errorTxt = lField.querySelector(".error-txt");
-            errorTxt.innerText = "Такий користувач вже існує";
-          } else {
-            eField.classList.add("error");
-            eField.classList.remove("valid");
-            let errorTxt = eField.querySelector(".error-txt");
-            errorTxt.innerText = "Така пошта вже існує";
-          }
-        })
-          
-      }
+        // Автоматичний логін після успішної реєстрації
+        const loginResponse = await fetch(`http://localhost:8080/authenticateUser?username=${encodeURIComponent(lInput.value)}&password=${encodeURIComponent(pInput.value)}`, {
+          method: 'POST'
+        });
 
+        if (loginResponse.ok) {
+          window.location.href = "/";
+        } else {
+          console.error('Помилка при логіні:', loginResponse.statusText);
+        }
+      } else {
+        const message = await response.json();
+        if (message.message === 'User already exists.') {
+          lField.classList.add("error");
+          lField.classList.remove("valid");
+          let errorTxt = lField.querySelector(".error-txt");
+          errorTxt.innerText = "Такий користувач вже існує";
+        } else {
+          eField.classList.add("error");
+          eField.classList.remove("valid");
+          let errorTxt = eField.querySelector(".error-txt");
+          errorTxt.innerText = "Така пошта вже існує";
+        }
+      }
     } catch (error) {
       console.error('Помилка при реєстрації:', error.message);
     }

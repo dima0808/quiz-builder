@@ -2,15 +2,15 @@ let isEditing = false; // Змінна для відстеження стану 
 
 function editUserInfo() {
   if (!isEditing) {
-      var spans = document.querySelectorAll(".account-grid-labels span");
+      let spans = document.querySelectorAll(".account-grid-labels span:not(#userName)"); // Виключаємо поле для введення логіну
       spans.forEach(function (span) {
-          var input = document.createElement("input");
+          let input = document.createElement("input");
           input.value = span.textContent;
           input.id = span.id; // Переносимо id
           span.parentNode.replaceChild(input, span);
       });
 
-      var saveButton = document.createElement("button");
+      let saveButton = document.createElement("button");
       saveButton.innerHTML = `<i class="fa-solid fa-check"></i>`;
       saveButton.className = "btn-save-characteristics btn-standart";
       saveButton.addEventListener("click", saveUserInfo);
@@ -24,15 +24,15 @@ function editUserInfo() {
 }
 
 function saveUserInfo() {
-  var inputs = document.querySelectorAll(".account-grid-labels input");
+  let inputs = document.querySelectorAll(".account-grid-labels input:not(#userName)"); // Виключаємо поле для введення логіну
   inputs.forEach(function (input) {
-      var span = document.createElement("span");
+      let span = document.createElement("span");
       span.textContent = input.value;
       span.id = input.id; // Переносимо id
       input.parentNode.replaceChild(span, input);
   });
 
-  var editButton = document.createElement("button");
+  let editButton = document.createElement("button");
   editButton.innerHTML = `<i class="fa-solid fa-feather"></i>`;
   editButton.className = "btn-change-characteristics btn-standart";
   editButton.addEventListener("click", editUserInfo);
@@ -41,7 +41,7 @@ function saveUserInfo() {
 
   isEditing = false;
 
-  var userData = {
+  let userData = {
       firstName: document.getElementById('firstName').textContent.trim(),
       secondName: document.getElementById('lastName').textContent.trim(),
       phoneNumber: document.getElementById('phoneNumber').textContent.trim(),

@@ -3014,6 +3014,7 @@ div > input[type=checkbox] {
 }
 
 .delete-reply-to-the-workers {
+  font-size: 30px;
   height: 50px;
   color: var(--color-blue-shadow);
   background-color: var(--color-blue-more-lighter);

@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class TestRepositoryTests {
+public class TestRepositoryTest {
 
     @Autowired
     private TestRepository testRepository;

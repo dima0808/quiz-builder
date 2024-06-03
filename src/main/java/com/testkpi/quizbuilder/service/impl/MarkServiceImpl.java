@@ -44,8 +44,6 @@ public class MarkServiceImpl implements MarkService {
 
     @Override
     public void deleteByTestAndUser(Test test, User user) {
-        System.out.println("МИ ТУТ 1");
         markRepository.deleteByTestAndUser(test, user);
-        System.out.println("МИ ТУТ 2");
     }
 }

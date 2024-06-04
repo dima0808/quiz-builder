@@ -7,10 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`/api/test/${testId}`)
         .then(response => response.json())
         .then(test => {
+            // Перемішування питань та відповідей
+            shuffleQuestionsAndAnswers(test);
+
             // Додавання обробника події для кліку на стрілочку "Назад"
             const backButton = document.querySelector('.icon-title');
             backButton.addEventListener('click', function() {
-                window.location.href = `test-details.html?id=${test.id}`;
+                window.location.href = `test-details.html?id=${testId}`;
             });
 
             // Відображення питань на сторінці
@@ -73,6 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Виникла проблема із збереженням результату тесту:', error);
+        });
+    }
+
+    // Функція для перемішування питань та відповідей
+    function shuffleQuestionsAndAnswers(test) {
+        // Перемішуємо питання
+        test.questions.sort(() => Math.random() - 0.5);
+        // Перемішуємо відповіді кожного питання
+        test.questions.forEach(question => {
+            question.answers.sort(() => Math.random() - 0.5);
         });
     }
 });

@@ -16,4 +16,6 @@ public interface FeedbackService {
     Feedback findById(Long id);
 
     List<Feedback> findAllQuestionsByUsername(String username);
+
+    void deleteById(Long id);
 }

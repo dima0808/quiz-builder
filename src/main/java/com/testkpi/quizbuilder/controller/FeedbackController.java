@@ -29,11 +29,24 @@ public class FeedbackController {
         return ResponseEntity.ok(feedbackService.findAllQuestionsByUsername(username));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Feedback> getQuestion(@PathVariable Long id) {
+        return ResponseEntity.ok(feedbackService.findById(id));
+    }
+
     @PostMapping(value = {"/add", "/create"})
     public ResponseEntity<OperationResponse> addQuestion(@RequestBody FeedbackDto feedbackDto) {
         feedbackService.saveQuestion(feedbackDto);
         OperationResponse feedbackResponse = new OperationResponse(HttpStatus.CREATED.value(),
                 "Question has been sent to the administration.", System.currentTimeMillis());
         return new ResponseEntity<>(feedbackResponse, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<OperationResponse> deleteQuestion(@PathVariable Long id) {
+        feedbackService.deleteById(id);
+        OperationResponse feedbackResponse = new OperationResponse(HttpStatus.CREATED.value(),
+                "Question has been deleted.", System.currentTimeMillis());
+        return ResponseEntity.ok(feedbackResponse);
     }
 }

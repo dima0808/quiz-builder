@@ -3,10 +3,7 @@ package com.testkpi.quizbuilder.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.testkpi.quizbuilder.entity.test.Test;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +12,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
